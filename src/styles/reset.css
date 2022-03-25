@@ -19,3 +19,9 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+input,
+select,
+textarea {
+  color: var(--text-color);
+}

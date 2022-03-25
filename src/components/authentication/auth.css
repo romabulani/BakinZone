@@ -1,0 +1,119 @@
+.auth-container,
+.logout-container {
+  border-radius: 5px;
+  height: fit-content;
+  margin: 1rem;
+  margin-left: 14rem;
+  row-gap: 0.5rem;
+}
+
+.signup-container {
+  padding: 1rem;
+}
+
+.form-auth {
+  margin: 0.5rem;
+  padding: 1rem;
+  width: 25rem;
+  color: #646464;
+}
+
+.heading4 {
+  padding-top: 1rem;
+}
+
+.logout-container {
+  box-shadow: unset;
+  align-items: flex-start;
+}
+
+.input-primary {
+  background-color: transparent;
+  display: block;
+  font-size: 13px;
+  width: 65%;
+}
+
+.btn-auth {
+  color: var(--bg-color);
+  font-weight: 600;
+  margin: unset;
+  width: 100%;
+}
+
+.btn-link-primary {
+  display: inline-block;
+  margin: 0.5rem;
+}
+
+.form-input {
+  display: flex;
+  width: 100%;
+  margin: 1rem;
+}
+
+.input-label {
+  align-items: center;
+  color: var(--text-color);
+  display: inline-flex;
+  justify-content: flex-start;
+  width: 30%;
+}
+
+.error {
+  color: var(--error-color);
+  display: flex;
+  font-size: 12px;
+  justify-content: flex-start;
+  padding: unset;
+  margin-left: 35%;
+}
+.error-login {
+  display: flex;
+  justify-content: center;
+  color: var(--error-color);
+}
+.error > div {
+  font-size: 14px;
+}
+
+.error-icon {
+  padding-right: 5px;
+}
+
+.error > span {
+  left: 5px;
+}
+
+.guest-button {
+  margin: 1rem 0;
+  color: var(--text-color);
+  font-weight: normal;
+}
+
+.guest-button:hover {
+  color: var(--bg-color);
+  font-weight: bold;
+}
+
+span {
+  color: var(--text-color);
+}
+
+@media only screen and (max-width: 640px) {
+  .auth-container,
+  .logout-container {
+    padding: 1rem;
+    margin-left: unset;
+  }
+  .form-auth {
+    width: 100%;
+  }
+  .input-label {
+    font-size: 13px;
+    font-weight: bold;
+  }
+  .error > div {
+    font-size: 12px;
+  }
+}
