@@ -5,7 +5,6 @@ import { VideoCard } from "./VideoCard";
 
 function Videos() {
   const { state, dispatch } = useData();
-  console.log(state.videos, state.categories);
   return (
     <>
       <div>

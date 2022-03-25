@@ -22,7 +22,6 @@ const DataContextProvider = ({ children }) => {
           payload: { videos: respVideos.videos },
         });
         const respCategories = await getCategories();
-        console.log(respCategories, "respCategories in DCP");
         dispatch({
           type: "SET_CATEGORIES",
           payload: { categories: respCategories.categories },

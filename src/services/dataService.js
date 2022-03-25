@@ -12,7 +12,6 @@ const getVideos = async () => {
 const getCategories = async () => {
   try {
     const response = await axios.get("/api/categories");
-    console.log(response.data, "getcategories service");
     if (response.status === 200) return response.data;
     else throw new Error();
   } catch (e) {
