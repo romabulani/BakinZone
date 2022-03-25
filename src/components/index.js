@@ -4,3 +4,6 @@ export { Footer } from "./shared/Footer";
 export { Navigation } from "./shared/Navigation";
 export { Sidebar } from "./shared/Sidebar";
 export { Videos } from "./videolisting/Videos";
+export { LoginForm } from "./authentication/LoginForm";
+export { SignupForm } from "./authentication/SignupForm";
+export { ProfileDetails } from "./profile/ProfileDetails";

@@ -1,8 +1,11 @@
 import "./nav.css";
 import { NavLink, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useAuth } from "contexts";
 
 function Sidebar() {
+  const { authToken } = useAuth();
+
   return (
     <>
       <aside className="sidebar">
@@ -87,7 +90,10 @@ function Sidebar() {
             <span>Playlists</span>
           </div>
         </Link>
-        <Link to="/videos" className="mobile-nav-item">
+        <Link
+          to={authToken ? "/profile" : "/login"}
+          className="mobile-nav-item"
+        >
           <div className="mobile-nav-item">
             <FontAwesomeIcon icon="user" className="bottom-icon" />
             <span>Profile</span>

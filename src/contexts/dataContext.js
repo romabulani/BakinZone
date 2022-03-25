@@ -10,7 +10,7 @@ const initialState = {
 
 const DataContext = createContext();
 
-const DataContextProvider = ({ children }) => {
+const DataProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(
@@ -39,4 +39,4 @@ const DataContextProvider = ({ children }) => {
 
 const useData = () => useContext(DataContext);
 
-export { DataContextProvider, useData };
+export { DataProvider, useData };
