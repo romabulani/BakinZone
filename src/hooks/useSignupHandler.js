@@ -1,9 +1,8 @@
-import { useNavigate } from "react-router-dom";
 import { useReducer } from "react";
 import { postSignupData } from "services";
+import { useLoginHandler } from "./useLoginHandler";
 
 function useSignupHandler() {
-  const navigate = useNavigate();
   const initialFormState = {
     firstName: "",
     lastName: "",
@@ -135,11 +134,20 @@ function useSignupHandler() {
     }
     return signupFlag;
   };
+  const { loginHandler } = useLoginHandler();
 
   const signUpHandler = async (e) => {
     e.preventDefault();
-    if (checkValidation()) {
-      const response = await postSignupData(formData, navigate);
+    try {
+      if (checkValidation()) {
+        const response = await postSignupData(formData);
+        loginHandler(null, null, null, {
+          email: response.createdUser.email,
+          password: response.createdUser.password,
+        });
+      }
+    } catch (e) {
+      console.log(e);
     }
   };
 
