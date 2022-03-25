@@ -1,0 +1,8 @@
+:root {
+  --bg-color: #121212;
+  --nav-color: #191921;
+  --hover-color: #2d2d3a;
+  --primary-color: #dabdff;
+  --text-color: rgba(255, 255, 255, 0.87);
+  --placeholder-color: rgb(172, 172, 172);
+}

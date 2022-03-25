@@ -1,0 +1,37 @@
+.footer-container {
+  background-color: var(--nav-color);
+  margin-top: 1rem;
+  padding: 1rem;
+}
+
+.footer-header {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+
+.footer-icon {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.footer-icon-style {
+  color: var(--text-color);
+  font-size: 1.7rem;
+}
+
+.footer-icon-style:hover {
+  color: var(--primary-color);
+}
+
+.copywright {
+  font-size: 0.75rem;
+}
+
+.footer-item {
+  display: inline-block;
+  padding: 1rem;
+}
+
+.keyword {
+  font-weight: bolder;
+}
