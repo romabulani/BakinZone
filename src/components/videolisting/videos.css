@@ -34,6 +34,7 @@
   cursor: pointer;
   height: 16rem;
   margin: 1rem;
+  position: relative;
   width: 18rem;
 }
 
@@ -57,9 +58,10 @@
 }
 
 .video-category {
-  bottom: 10px;
+  bottom: 0px;
   color: var(--placeholder-color);
-  padding: 0 10px;
+  padding: 10px;
+  position: absolute;
 }
 
 @media only screen and (max-width: 640px) {
