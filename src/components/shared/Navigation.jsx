@@ -1,9 +1,13 @@
 import "./nav.css";
 import logo from "assets/images/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useAuth } from "contexts";
 
 function Navigation() {
+  const navigate = useNavigate();
+  const { authToken } = useAuth();
+
   return (
     <nav className="nav-container">
       <div className="brand">
@@ -24,7 +28,10 @@ function Navigation() {
         />
         <FontAwesomeIcon icon="magnifying-glass" className="search-icon" />
       </div>
-      <div className="profile-icon">
+      <div
+        className="profile-icon"
+        onClick={() => (authToken ? navigate("/profile") : navigate("/login"))}
+      >
         <FontAwesomeIcon icon="user" className="search-icon" />
       </div>
     </nav>
