@@ -11,6 +11,7 @@ import {
   faUser,
   faMagnifyingGlass,
   faEllipsisVertical,
+  faCircleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -24,7 +25,8 @@ library.add(
   faUser,
   faHome,
   faMagnifyingGlass,
-  faEllipsisVertical
+  faEllipsisVertical,
+  faCircleExclamation
 );
 
 export { library };
