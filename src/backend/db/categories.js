@@ -1,5 +1,3 @@
-import { v4 as uuid } from "uuid";
-
 /**
  * Category Database can be added here.
  * You can add category of your wish with different attributes
@@ -7,21 +5,27 @@ import { v4 as uuid } from "uuid";
 
 export const categories = [
   {
-    _id: uuid(),
-    categoryName: "Computer Programming",
-    description:
-      "Computer programming is the process of designing and building an executable computer program to accomplish a specific computing",
+    _id: "a155d8ae-d464-443e-989c-145d475a34d7",
+    categoryName: "All",
   },
   {
-    _id: uuid(),
-    categoryName: "Frontend Development",
-    description:
-      "Front-end web development, also known as client-side development is the practice of producing HTML, CSS and JavaScript for a website or Web Application",
+    _id: "daeef2c7-a393-45c5-8a08-eb186053540c",
+    categoryName: "Cakes",
   },
   {
-    _id: uuid(),
-    categoryName: "Backend Development",
-    description:
-      "Backend Development is also known as server-side development. It is everything that the users don't see and contains behind-the-scenes activities that occur when performing any action on a website.",
+    _id: "4f931046-1a0e-407d-90f7-2c67bcb73186",
+    categoryName: "Muffins",
+  },
+  {
+    _id: "7c0d07fd-638d-4e92-bc43-8b287d8a6bf3",
+    categoryName: "Cookies",
+  },
+  {
+    _id: "6dcc172e-d1ed-4016-a9d2-b314759b3d9f",
+    categoryName: "Pastries",
+  },
+  {
+    _id: "539129eb-b2f4-4213-bc2b-88b2ef1bd512",
+    categoryName: "Donuts",
   },
 ];
