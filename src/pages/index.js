@@ -3,3 +3,4 @@ export { SignupPage } from "./SignupPage";
 export { LoginPage } from "./LoginPage";
 export { ProfilePage } from "./ProfilePage";
 export { PlaylistsPage } from "./PlaylistsPage";
+export { PlaylistPage } from "./PlaylistPage";

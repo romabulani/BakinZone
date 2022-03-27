@@ -57,6 +57,7 @@ function usePlaylistOperations() {
 
   const removeVideoFromPlaylist = async (e, playlistId) => {
     e.target.disabled = true;
+    e.preventDefault();
     const response = await removeVideoFromPlaylistInServer(
       authToken,
       playlistId,
@@ -78,6 +79,7 @@ function usePlaylistOperations() {
 
   const deletePlaylist = async (e, playlistId) => {
     e.target.disabled = true;
+    e.preventDefault();
     const response = await deletePlaylistInServer(authToken, playlistId);
     e.target.disabled = false;
     dispatch({
@@ -85,6 +87,7 @@ function usePlaylistOperations() {
       payload: { playlists: response.playlists },
     });
   };
+
   return {
     getAllPlaylists,
     addPlaylist,

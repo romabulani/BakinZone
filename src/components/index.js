@@ -9,3 +9,5 @@ export { SignupForm } from "./authentication/SignupForm";
 export { ProfileDetails } from "./profile/ProfileDetails";
 export { PlaylistModal } from "./videolisting/PlaylistModal";
 export { Playlists } from "./playlists/Playlists";
+export { SinglePlaylist } from "./playlists/SinglePlaylist";
+export { CommonVideoCard } from "./shared/CommonVideoCard";

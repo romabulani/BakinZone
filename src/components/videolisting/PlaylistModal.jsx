@@ -64,7 +64,10 @@ function PlaylistModal() {
           <FontAwesomeIcon
             icon="close"
             className="close-btn"
-            onClick={() => setPlaylistModal(false)}
+            onClick={() => {
+              setNewPlaylist(false);
+              setPlaylistModal(false);
+            }}
           />
         </div>
 

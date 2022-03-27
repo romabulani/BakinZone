@@ -2,6 +2,7 @@ import { MockAPI, PlaylistModal, ScrollToTop } from "components";
 import { useAuth } from "contexts";
 import {
   LoginPage,
+  PlaylistPage,
   PlaylistsPage,
   ProfilePage,
   SignupPage,
@@ -28,6 +29,7 @@ function App() {
         <Route path="/videos" element={<VideoListingPage />} />
         {authToken && <Route path="/profile" element={<ProfilePage />} />}
         <Route path="/playlists" element={<PlaylistsPage />} />
+        <Route path="/playlists/:playlistId" element={<PlaylistPage />} />
       </Routes>
     </div>
   );

@@ -30,3 +30,45 @@
   color: var(--error-color);
   cursor: pointer;
 }
+
+.flex-column-start {
+  align-self: flex-start;
+  flex-direction: column;
+  margin: 0.5rem 1rem 0.5rem 17rem;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.margin-container {
+  margin: 0.5rem 1rem 0.5rem 17rem;
+}
+
+.no-link-decoration {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.btn-no-decoration {
+  border: none;
+  padding: 0;
+  background: none;
+  color: var(--error-color);
+  cursor: pointer;
+}
+
+.btn-primary {
+  color: var(--bg-color);
+}
+
+.no-playlist-container {
+  margin-top: 10%;
+}
+@media only screen and (max-width: 640px) {
+  .flex-column-start,
+  .margin-container {
+    margin-left: 1rem;
+  }
+}
