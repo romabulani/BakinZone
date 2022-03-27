@@ -1,6 +1,12 @@
-import { MockAPI, ScrollToTop } from "components";
+import { MockAPI, PlaylistModal, ScrollToTop } from "components";
 import { useAuth } from "contexts";
-import { LoginPage, ProfilePage, SignupPage, VideoListingPage } from "pages";
+import {
+  LoginPage,
+  PlaylistsPage,
+  ProfilePage,
+  SignupPage,
+  VideoListingPage,
+} from "pages";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
@@ -12,6 +18,7 @@ function App() {
   return (
     <div className="App">
       <ScrollToTop />
+      <PlaylistModal />
       <ToastContainer theme="dark" position="bottom-right" autoClose={3000} />
       <Routes>
         <Route path="/" element={<VideoListingPage />} />
@@ -20,6 +27,7 @@ function App() {
         <Route path="/mock-api" element={<MockAPI />} />
         <Route path="/videos" element={<VideoListingPage />} />
         {authToken && <Route path="/profile" element={<ProfilePage />} />}
+        <Route path="/playlists" element={<PlaylistsPage />} />
       </Routes>
     </div>
   );

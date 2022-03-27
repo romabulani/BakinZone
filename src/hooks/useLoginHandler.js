@@ -1,11 +1,11 @@
-import { useAuth } from "contexts";
+import { useAuth, useData } from "contexts";
 import { useNavigate } from "react-router-dom";
-import { postLoginData } from "services";
+import { getAllPlaylistsFromServer, postLoginData } from "services";
 
 function useLoginHandler() {
   const { setAuthToken, setAuthUser } = useAuth();
   const navigate = useNavigate();
-
+  const { dispatch } = useData();
   const loginHandler = async (e, setLoginData, setErrorData, loginData) => {
     if (e) e.preventDefault();
     try {
@@ -28,9 +28,13 @@ function useLoginHandler() {
       setAuthUser(response.foundUser);
       localStorage.setItem("authToken", tokenResponse);
       localStorage.setItem("authUser", user);
+      response = await getAllPlaylistsFromServer(tokenResponse);
+      dispatch({
+        type: "PLAYLIST_OPERATION",
+        payload: { playlists: response.playlists },
+      });
       navigate("/videos");
     } catch (e) {
-      console.log("loginHandler: Error in Login", e);
       setErrorData(true);
     }
   };

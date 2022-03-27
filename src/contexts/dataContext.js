@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useReducer } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import { reducer } from "reducer";
 import { getCategories, getVideos } from "services";
 
@@ -6,12 +12,15 @@ const initialState = {
   videos: [],
   categories: [],
   category: "All",
+  playlists: [],
 };
 
 const DataContext = createContext();
 
 const DataProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [playlistModal, setPlaylistModal] = useState(false);
+  const [currentVideo, setCurrentVideo] = useState({});
 
   useEffect(
     () =>
@@ -31,7 +40,16 @@ const DataProvider = ({ children }) => {
   );
 
   return (
-    <DataContext.Provider value={{ state, dispatch }}>
+    <DataContext.Provider
+      value={{
+        state,
+        dispatch,
+        playlistModal,
+        setPlaylistModal,
+        currentVideo,
+        setCurrentVideo,
+      }}
+    >
       {children}
     </DataContext.Provider>
   );

@@ -1,13 +1,14 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "contexts";
+import { useAuth, useData } from "contexts";
 import "./profile.css";
 import { toast } from "react-toastify";
 
 function ProfileDetails() {
   const { setAuthToken, authUser, setAuthUser } = useAuth();
-
+  const { dispatch } = useData();
   const navigate = useNavigate();
+
   useEffect(() => {
     if (localStorage.authUser) setAuthUser(JSON.parse(localStorage.authUser));
   }, []);
@@ -18,6 +19,7 @@ function ProfileDetails() {
     toast.success("Logout successful");
     setAuthToken("");
     setAuthUser(null);
+    dispatch({ type: "PLAYLIST_OPERATION", payload: { playlists: [] } });
     navigate("/videos");
   }
 

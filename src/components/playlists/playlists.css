@@ -1,0 +1,32 @@
+.playlist-card {
+  height: 13rem;
+}
+
+.videos-count-container {
+  align-items: center;
+  background-color: var(--bg-color);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  opacity: 0.7;
+  position: absolute;
+  right: 0;
+  row-gap: 10px;
+  top: 0;
+  width: 40%;
+}
+
+.large-font-size {
+  font-size: 1.2rem;
+}
+
+.playlist-title {
+  align-items: center;
+  height: 35%;
+}
+
+.delete-icon {
+  color: var(--error-color);
+  cursor: pointer;
+}
