@@ -7,3 +7,5 @@ export { Videos } from "./videolisting/Videos";
 export { LoginForm } from "./authentication/LoginForm";
 export { SignupForm } from "./authentication/SignupForm";
 export { ProfileDetails } from "./profile/ProfileDetails";
+export { PlaylistModal } from "./videolisting/PlaylistModal";
+export { Playlists } from "./playlists/Playlists";
