@@ -30,7 +30,7 @@ function Sidebar() {
         </NavLink>
 
         <NavLink
-          to="/"
+          to={authToken ? "/playlists" : "/login"}
           className={({ isActive }) =>
             isActive ? "sidebar-item sidebar-active" : "sidebar-item"
           }
@@ -84,7 +84,7 @@ function Sidebar() {
           </div>
         </Link>
 
-        <Link to="/videos" className="mobile-nav-item">
+        <Link to="/playlists" className="mobile-nav-item">
           <div className="mobile-nav-item">
             <FontAwesomeIcon icon="clapperboard" className="bottom-icon" />
             <span>Playlists</span>
