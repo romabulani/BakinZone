@@ -90,3 +90,8 @@
 .watch-later {
   padding-bottom: 10px;
 }
+
+input[type="checkbox"],
+.checkbox-label {
+  cursor: pointer;
+}

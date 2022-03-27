@@ -3,11 +3,11 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./playlists.css";
 import { usePlaylistOperations } from "hooks";
+import { Link, Outlet } from "react-router-dom";
 
 function Playlists() {
   const { state } = useData();
   const { deletePlaylist } = usePlaylistOperations();
-
   const getThumbnail = (playlist) =>
     playlist.videos.length === 0
       ? "https://i.ytimg.com/img/no_thumbnail.jpg"
@@ -16,42 +16,53 @@ function Playlists() {
   const onClickDeleteHandler = (e, playlistId) => deletePlaylist(e, playlistId);
 
   return (
-    <div className="flex-row-center">
-      <div className="videos-container">
-        <div className="flex-start-column">
-          <div className="large-font-size">
-            {state.playlists.length} Playlists
-          </div>
+    <div className="flex-column">
+      <div className="flex-column-start">
+        <div className="large-font-size">
+          {state.playlists.length} Playlist(s)
         </div>
-        {state.playlists.map((playlist) => (
-          <div className="video-card playlist-card" key={playlist._id}>
-            <div className="video-img-container">
-              <img
-                src={getThumbnail(playlist)}
-                alt="video-thumbnail"
-                className="video-thumbnail"
-              ></img>
-              <div className="videos-count-container">
-                <div className="large-font-size">
-                  {playlist.videos.length === 0 ? "" : playlist.videos.length}
-                </div>
-                <FontAwesomeIcon
-                  icon="clapperboard"
-                  className="large-font-size"
-                />
-              </div>
-            </div>
-            <div className="title-and-options playlist-title">
-              <span className="large-font-size">{playlist.name}</span>
-              <FontAwesomeIcon
-                icon="trash"
-                className="delete-icon large-font-size"
-                onClick={(e) => onClickDeleteHandler(e, playlist._id)}
-              />
-            </div>
-          </div>
-        ))}
       </div>
+      <div className="flex-row-center">
+        <div className="videos-container">
+          {state.playlists.map((playlist) => (
+            <div className="video-card playlist-card" key={playlist._id}>
+              <Link
+                to={`/playlists/${playlist._id}`}
+                className="no-link-decoration"
+              >
+                <div className="video-img-container">
+                  <img
+                    src={getThumbnail(playlist)}
+                    alt="video-thumbnail"
+                    className="video-thumbnail"
+                  ></img>
+                  <div className="videos-count-container ">
+                    <div className="large-font-size no-link-decoration">
+                      {playlist.videos.length === 0
+                        ? ""
+                        : playlist.videos.length}
+                    </div>
+                    <FontAwesomeIcon
+                      icon="clapperboard"
+                      className="large-font-size no-link-decoration"
+                    />
+                  </div>
+                </div>
+                <div className="title-and-options playlist-title">
+                  <span className="large-font-size">{playlist.name}</span>
+                  <button
+                    onClick={(e) => onClickDeleteHandler(e, playlist._id)}
+                    className="btn-no-decoration"
+                  >
+                    <FontAwesomeIcon icon="trash" />
+                  </button>
+                </div>
+              </Link>
+            </div>
+          ))}
+        </div>
+      </div>
+      <Outlet />
     </div>
   );
 }
