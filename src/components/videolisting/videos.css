@@ -40,6 +40,7 @@
 
 .video-img-container {
   height: 65%;
+  position: relative;
   width: 100%;
 }
 
@@ -62,6 +63,19 @@
   color: var(--placeholder-color);
   padding: 10px;
   position: absolute;
+}
+
+.p-right-5 {
+  padding-right: 5px;
+}
+
+.p-left-5 {
+  padding-left: 5px;
+}
+
+.options-icon {
+  font-size: 1.5rem;
+  padding: 0 10px;
 }
 
 @media only screen and (max-width: 640px) {
