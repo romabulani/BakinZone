@@ -1,6 +1,7 @@
 import { useData } from "contexts";
 import "./videos.css";
 import { VideoCard } from "./VideoCard";
+import { Outlet } from "react-router-dom";
 
 function Videos() {
   const { state, dispatch } = useData();
@@ -44,6 +45,7 @@ function Videos() {
           ))}
         </div>
       </div>
+      <Outlet />
     </>
   );
 }
