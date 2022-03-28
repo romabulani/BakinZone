@@ -20,6 +20,11 @@ export const reducer = (state, action) => {
         ...state,
         playlists: action.payload.playlists,
       };
+    case "HISTORY_OPERATION":
+      return {
+        ...state,
+        history: action.payload.history,
+      };
     default:
       return state;
   }

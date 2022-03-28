@@ -11,3 +11,6 @@ export { PlaylistModal } from "./videolisting/PlaylistModal";
 export { Playlists } from "./playlists/Playlists";
 export { SinglePlaylist } from "./playlists/SinglePlaylist";
 export { CommonVideoCard } from "./shared/CommonVideoCard";
+export { Video } from "./singlevideo/Video";
+export { History } from "./history/History";
+export { PrivateRoute } from "./authentication/PrivateRoute";

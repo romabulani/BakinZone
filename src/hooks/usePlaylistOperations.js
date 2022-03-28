@@ -55,14 +55,22 @@ function usePlaylistOperations() {
     });
   };
 
-  const removeVideoFromPlaylist = async (e, playlistId) => {
+  const removeVideoFromPlaylist = async (e, playlistId, currVideoId) => {
     e.target.disabled = true;
     e.preventDefault();
-    const response = await removeVideoFromPlaylistInServer(
-      authToken,
-      playlistId,
-      currentVideo._id
-    );
+    let response;
+    if (currVideoId)
+      response = await removeVideoFromPlaylistInServer(
+        authToken,
+        playlistId,
+        currVideoId
+      );
+    else
+      response = await removeVideoFromPlaylistInServer(
+        authToken,
+        playlistId,
+        currentVideo._id
+      );
     e.target.disabled = false;
     const newPlaylists = state.playlists.reduce(
       (acc, curr) =>

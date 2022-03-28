@@ -1,5 +1,5 @@
 import { Footer, Navigation, ProfileDetails, Sidebar } from "components";
-import React from "react";
+import "styles/globalbakin.css";
 
 function ProfilePage() {
   return (

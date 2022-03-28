@@ -4,7 +4,6 @@ import {
   faHouse,
   faHome,
   faCompass,
-  faClapperboard,
   faThumbsUp,
   faClockRotateLeft,
   faClock,
@@ -15,13 +14,13 @@ import {
   faClose,
   faPlus,
   faTrash,
+  faCopy,
+  faPen,
 } from "@fortawesome/free-solid-svg-icons";
-
 library.add(
   fab,
   faHouse,
   faCompass,
-  faClapperboard,
   faThumbsUp,
   faClockRotateLeft,
   faClock,
@@ -32,7 +31,9 @@ library.add(
   faCircleExclamation,
   faClose,
   faPlus,
-  faTrash
+  faTrash,
+  faCopy,
+  faPen
 );
 
 export { library };

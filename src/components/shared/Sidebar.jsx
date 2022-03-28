@@ -1,11 +1,9 @@
 import "./nav.css";
 import { NavLink, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useAuth } from "contexts";
+import { RiPlayListAddFill } from "react-icons/ri";
 
 function Sidebar() {
-  const { authToken } = useAuth();
-
   return (
     <>
       <aside className="sidebar">
@@ -30,13 +28,15 @@ function Sidebar() {
         </NavLink>
 
         <NavLink
-          to={authToken ? "/playlists" : "/login"}
+          to="/playlists"
           className={({ isActive }) =>
             isActive ? "sidebar-item sidebar-active" : "sidebar-item"
           }
         >
-          <FontAwesomeIcon icon="clapperboard" className="sidebar-icon" />
-          <span>Playlists</span>
+          <div className="icon-chip">
+            <RiPlayListAddFill />
+            <span className="p-left-12">Playlists</span>
+          </div>
         </NavLink>
 
         <NavLink
@@ -50,7 +50,7 @@ function Sidebar() {
         </NavLink>
 
         <NavLink
-          to="/"
+          to="/history"
           className={({ isActive }) =>
             isActive ? "sidebar-item sidebar-active" : "sidebar-item"
           }
@@ -86,14 +86,13 @@ function Sidebar() {
 
         <Link to="/playlists" className="mobile-nav-item">
           <div className="mobile-nav-item">
-            <FontAwesomeIcon icon="clapperboard" className="bottom-icon" />
+            <div className="icon-chip">
+              <RiPlayListAddFill />
+            </div>
             <span>Playlists</span>
           </div>
         </Link>
-        <Link
-          to={authToken ? "/profile" : "/login"}
-          className="mobile-nav-item"
-        >
+        <Link to="/profile" className="mobile-nav-item">
           <div className="mobile-nav-item">
             <FontAwesomeIcon icon="user" className="bottom-icon" />
             <span>Profile</span>

@@ -1,17 +1,17 @@
-import { Footer, Navigation, Sidebar, SinglePlaylist } from "components";
+import { Footer, History, Navigation, Sidebar } from "components";
 import "styles/globalbakin.css";
 
-function PlaylistPage() {
+function HistoryPage() {
   return (
     <div className="pagewrapper">
       <Navigation />
       <div className="middle-content">
         <Sidebar />
-        <SinglePlaylist />
+        <History />
       </div>
       <Footer />
     </div>
   );
 }
 
-export { PlaylistPage };
+export { HistoryPage };

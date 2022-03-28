@@ -13,6 +13,7 @@ const initialState = {
   categories: [],
   category: "All",
   playlists: [],
+  history: [],
 };
 
 const DataContext = createContext();
