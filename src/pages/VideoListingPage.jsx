@@ -1,6 +1,6 @@
 import { Footer, Navigation, Sidebar, Videos } from "components";
-import React from "react";
 import "styles/globalbakin.css";
+
 function VideoListingPage() {
   return (
     <div className="pagewrapper">
