@@ -80,6 +80,9 @@
   text-decoration: none;
 }
 
+.p-left-12 {
+  padding-left: 12px;
+}
 .mobile-nav-item {
   display: flex;
   flex-direction: column;

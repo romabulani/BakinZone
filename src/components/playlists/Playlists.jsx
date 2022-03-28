@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./playlists.css";
 import { usePlaylistOperations } from "hooks";
 import { Link, Outlet } from "react-router-dom";
+import { RiPlayListAddFill } from "react-icons/ri";
 
 function Playlists() {
   const { state } = useData();
@@ -42,10 +43,7 @@ function Playlists() {
                         ? ""
                         : playlist.videos.length}
                     </div>
-                    <FontAwesomeIcon
-                      icon="clapperboard"
-                      className="large-font-size no-link-decoration"
-                    />
+                    <RiPlayListAddFill className="large-font-size no-link-decoration" />
                   </div>
                 </div>
                 <div className="title-and-options playlist-title">

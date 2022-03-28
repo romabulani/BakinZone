@@ -34,7 +34,6 @@ function ProfileDetails() {
         <button className="btn btn-outline-error" onClick={logoutHandler}>
           Log Out
         </button>
-        <button className="btn btn-outline-error">Clear History</button>
       </div>
     </div>
   );
