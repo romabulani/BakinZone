@@ -1,5 +1,4 @@
-import { MockAPI, PlaylistModal, ScrollToTop } from "components";
-import { useAuth } from "contexts";
+import { MockAPI, PlaylistModal, PrivateRoute, ScrollToTop } from "components";
 import {
   LoginPage,
   PlaylistPage,
@@ -7,6 +6,8 @@ import {
   ProfilePage,
   SignupPage,
   VideoListingPage,
+  VideoPage,
+  HistoryPage,
 } from "pages";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -14,8 +15,6 @@ import "react-toastify/dist/ReactToastify.min.css";
 import "./App.css";
 
 function App() {
-  const { authToken } = useAuth();
-
   return (
     <div className="App">
       <ScrollToTop />
@@ -27,9 +26,39 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/mock-api" element={<MockAPI />} />
         <Route path="/videos" element={<VideoListingPage />} />
-        {authToken && <Route path="/profile" element={<ProfilePage />} />}
-        <Route path="/playlists" element={<PlaylistsPage />} />
-        <Route path="/playlists/:playlistId" element={<PlaylistPage />} />
+        <Route path="/videos/:videoId" element={<VideoPage />} />
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute>
+              <ProfilePage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/playlists"
+          element={
+            <PrivateRoute>
+              <PlaylistsPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/playlists/:playlistId"
+          element={
+            <PrivateRoute>
+              <PlaylistPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/history"
+          element={
+            <PrivateRoute>
+              <HistoryPage />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </div>
   );
