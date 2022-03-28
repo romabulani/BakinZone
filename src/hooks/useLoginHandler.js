@@ -1,6 +1,10 @@
 import { useAuth, useData } from "contexts";
 import { useNavigate } from "react-router-dom";
-import { getAllPlaylistsFromServer, postLoginData } from "services";
+import {
+  getAllPlaylistsFromServer,
+  postLoginData,
+  getAllVideosInHistoryFromServer,
+} from "services";
 
 function useLoginHandler() {
   const { setAuthToken, setAuthUser } = useAuth();
@@ -32,6 +36,11 @@ function useLoginHandler() {
       dispatch({
         type: "PLAYLIST_OPERATION",
         payload: { playlists: response.playlists },
+      });
+      response = await getAllVideosInHistoryFromServer(tokenResponse);
+      dispatch({
+        type: "HISTORY_OPERATION",
+        payload: { history: response.history },
       });
       navigate("/videos");
     } catch (e) {
