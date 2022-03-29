@@ -19,7 +19,9 @@ function ProfileDetails() {
     toast.success("Logout successful");
     setAuthToken("");
     setAuthUser(null);
-    dispatch({ type: "PLAYLIST_OPERATION", payload: { playlists: [] } });
+    dispatch({ type: "SET_PLAYLISTS", payload: { playlists: [] } });
+    dispatch({ type: "SET_HISTORY", payload: { history: [] } });
+    dispatch({ type: "SET_LIKED_VIDEOS", payload: { likes: [] } });
     navigate("/videos");
   }
 
