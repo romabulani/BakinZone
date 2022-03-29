@@ -11,8 +11,18 @@ function Video() {
   const params = useParams();
   const { state } = useData();
   const { authToken } = useAuth();
-  const { addVideoToHistory } = useVideoOperations();
+  const {
+    addVideoToHistory,
+    isLiked,
+    addVideoToLikedVideos,
+    deleteVideoFromLikedVideos,
+  } = useVideoOperations();
   const video = state.videos.find((video) => video._id === params.videoId);
+
+  const likeHandler = (e, video) =>
+    isLiked(video._id)
+      ? deleteVideoFromLikedVideos(e, video._id)
+      : addVideoToLikedVideos(e, video);
 
   return (
     <>
@@ -34,8 +44,18 @@ function Video() {
               <div className="keyword hashtag">{`#${video.category}`}</div>
               <div className="video-title">{video.title}</div>
               <div className="video-buttons">
-                <span className="chip category-chip">
-                  <FontAwesomeIcon icon={faThumbsUp} className="p-right-5" />
+                <span
+                  className="chip category-chip"
+                  onClick={(e) => likeHandler(e, video)}
+                >
+                  {isLiked(video._id) ? (
+                    <FontAwesomeIcon
+                      icon="thumbs-up"
+                      className="p-right-5 keyword"
+                    />
+                  ) : (
+                    <FontAwesomeIcon icon={faThumbsUp} className="p-right-5" />
+                  )}
                   Like
                 </span>
                 <span className="chip category-chip">
