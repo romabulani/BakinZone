@@ -40,10 +40,6 @@
   position: unset;
 }
 
-.btn {
-  font-weight: bold;
-}
-
 .flex-column {
   display: flex;
   flex-direction: column;

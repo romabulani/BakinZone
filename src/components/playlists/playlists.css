@@ -61,6 +61,7 @@
 
 .btn-primary {
   color: var(--bg-color);
+  font-weight: bold;
 }
 
 .no-playlist-container {
