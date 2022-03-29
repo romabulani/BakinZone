@@ -19,6 +19,7 @@ function Sidebar() {
 
         <NavLink
           to="/videos"
+          end={true}
           className={({ isActive }) =>
             isActive ? "sidebar-item sidebar-active" : "sidebar-item"
           }

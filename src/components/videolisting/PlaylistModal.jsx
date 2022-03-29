@@ -29,7 +29,10 @@ function PlaylistModal() {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === "/videos") setWatchLaterOption(true);
+    // Added to customise modal as per the route
+    location.pathname === "/videos"
+      ? setWatchLaterOption(true)
+      : setWatchLaterOption(false);
   }, [location]);
 
   const isVideoInPlaylist = (playlist) => {

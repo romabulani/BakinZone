@@ -6,10 +6,12 @@ import { useAuth, useData } from "contexts";
 import { faClock, faThumbsUp } from "@fortawesome/free-regular-svg-icons";
 import { RiPlayListAddFill } from "react-icons/ri";
 import { useVideoOperations } from "hooks";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 function Video() {
   const params = useParams();
-  const { state } = useData();
+  const { state, setPlaylistModal, setCurrentVideo } = useData();
   const { authToken } = useAuth();
   const {
     addVideoToHistory,
@@ -17,12 +19,19 @@ function Video() {
     addVideoToLikedVideos,
     deleteVideoFromLikedVideos,
   } = useVideoOperations();
+
   const video = state.videos.find((video) => video._id === params.videoId);
 
+  useEffect(() => setCurrentVideo(video), [video]);
   const likeHandler = (e, video) =>
     isLiked(video._id)
       ? deleteVideoFromLikedVideos(e, video._id)
       : addVideoToLikedVideos(e, video);
+
+  const copyHandler = () => {
+    navigator.clipboard.writeText(window.location.href);
+    toast.info("Link Copied");
+  };
 
   return (
     <>
@@ -62,14 +71,17 @@ function Video() {
                   <FontAwesomeIcon icon={faClock} className="p-right-5" />
                   Watch Later
                 </span>
-                <span className="chip category-chip icon-chip">
+                <span
+                  className="chip category-chip icon-chip"
+                  onClick={() => setPlaylistModal(true)}
+                >
                   <div className="icon-chip">
                     <RiPlayListAddFill />
                   </div>
                   <span className="p-left-5">Save</span>
                 </span>
-                <span className="chip category-chip">
-                  <FontAwesomeIcon icon="copy" className="p-right-5" />
+                <span className="chip category-chip" onClick={copyHandler}>
+                  <FontAwesomeIcon icon="share-alt" className="p-right-5" />
                   Copy Link
                 </span>
               </div>
