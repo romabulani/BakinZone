@@ -14,7 +14,7 @@ import {
   faClose,
   faPlus,
   faTrash,
-  faCopy,
+  faShareAlt,
   faPen,
 } from "@fortawesome/free-solid-svg-icons";
 library.add(
@@ -32,7 +32,7 @@ library.add(
   faClose,
   faPlus,
   faTrash,
-  faCopy,
+  faShareAlt,
   faPen
 );
 
