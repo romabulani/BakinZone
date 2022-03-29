@@ -61,11 +61,19 @@
 
 .btn-primary {
   color: var(--bg-color);
+  font-weight: bold;
+}
+
+.inline-flex-center {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .no-playlist-container {
   margin-top: 10%;
 }
+
 @media only screen and (max-width: 640px) {
   .flex-column-start,
   .margin-container {

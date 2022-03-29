@@ -12,4 +12,7 @@ export {
   addVideoToHistoryInServer,
   deleteVideoFromHistoryInServer,
   deleteAllVideosFromHistoryInServer,
+  getAllLikedVideosFromServer,
+  addVideoToLikedVideosInServer,
+  deleteVideoFromLikedVideosInServer,
 } from "./videoService";

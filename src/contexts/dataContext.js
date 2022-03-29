@@ -14,6 +14,7 @@ const initialState = {
   category: "All",
   playlists: [],
   history: [],
+  likes: [],
 };
 
 const DataContext = createContext();
@@ -22,7 +23,6 @@ const DataProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [playlistModal, setPlaylistModal] = useState(false);
   const [currentVideo, setCurrentVideo] = useState({});
-
   useEffect(
     () =>
       (async () => {

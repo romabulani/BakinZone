@@ -15,15 +15,20 @@ export const reducer = (state, action) => {
         ...state,
         category: action.payload.category,
       };
-    case "PLAYLIST_OPERATION":
+    case "SET_PLAYLISTS":
       return {
         ...state,
         playlists: action.payload.playlists,
       };
-    case "HISTORY_OPERATION":
+    case "SET_HISTORY":
       return {
         ...state,
         history: action.payload.history,
+      };
+    case "SET_LIKED_VIDEOS":
+      return {
+        ...state,
+        likes: action.payload.likes,
       };
     default:
       return state;

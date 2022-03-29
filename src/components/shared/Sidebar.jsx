@@ -40,7 +40,7 @@ function Sidebar() {
         </NavLink>
 
         <NavLink
-          to="/"
+          to="/liked"
           className={({ isActive }) =>
             isActive ? "sidebar-item sidebar-active" : "sidebar-item"
           }

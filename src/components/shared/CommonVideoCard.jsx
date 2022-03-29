@@ -5,10 +5,13 @@ import { Link } from "react-router-dom";
 
 function CommonVideoCard({ video, playlistCategory }) {
   const { removeVideoFromPlaylist } = usePlaylistOperations();
-  const { deleteVideoFromHistory } = useVideoOperations();
+  const { deleteVideoFromHistory, deleteVideoFromLikedVideos } =
+    useVideoOperations();
 
   const onClickDeleteHandler = (e) => {
-    if (playlistCategory === "watchHistory")
+    if (playlistCategory === "likedVideo")
+      deleteVideoFromLikedVideos(e, video._id);
+    else if (playlistCategory === "watchHistory")
       deleteVideoFromHistory(e, video._id);
     else removeVideoFromPlaylist(e, playlistCategory, video._id);
   };

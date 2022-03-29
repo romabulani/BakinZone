@@ -16,7 +16,7 @@ function usePlaylistOperations() {
   const getAllPlaylists = async () => {
     const response = await getAllPlaylistsFromServer(authToken);
     dispatch({
-      type: "PLAYLIST_OPERATION",
+      type: "SET_PLAYLISTS",
       payload: { playlists: response.playlists },
     });
   };
@@ -27,7 +27,7 @@ function usePlaylistOperations() {
     const response = await addPlaylistToServer(authToken, playlist);
     e.target.disabled = false;
     dispatch({
-      type: "PLAYLIST_OPERATION",
+      type: "SET_PLAYLISTS",
       payload: { playlists: response.playlists },
     });
     return response.playlists[response.playlists.length - 1];
@@ -50,7 +50,7 @@ function usePlaylistOperations() {
     );
     // Note : Response has playlist and NOT playlists, wrong in MOCKBEE (for reference)
     dispatch({
-      type: "PLAYLIST_OPERATION",
+      type: "SET_PLAYLISTS",
       payload: { playlists: newPlaylists },
     });
   };
@@ -80,7 +80,7 @@ function usePlaylistOperations() {
       []
     );
     dispatch({
-      type: "PLAYLIST_OPERATION",
+      type: "SET_PLAYLISTS",
       payload: { playlists: newPlaylists },
     });
   };
@@ -91,7 +91,7 @@ function usePlaylistOperations() {
     const response = await deletePlaylistInServer(authToken, playlistId);
     e.target.disabled = false;
     dispatch({
-      type: "PLAYLIST_OPERATION",
+      type: "SET_PLAYLISTS",
       payload: { playlists: response.playlists },
     });
   };

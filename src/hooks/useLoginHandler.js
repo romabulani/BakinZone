@@ -4,6 +4,7 @@ import {
   getAllPlaylistsFromServer,
   postLoginData,
   getAllVideosInHistoryFromServer,
+  getAllLikedVideosFromServer,
 } from "services";
 
 function useLoginHandler() {
@@ -34,13 +35,18 @@ function useLoginHandler() {
       localStorage.setItem("authUser", user);
       response = await getAllPlaylistsFromServer(tokenResponse);
       dispatch({
-        type: "PLAYLIST_OPERATION",
+        type: "SET_PLAYLISTS",
         payload: { playlists: response.playlists },
       });
       response = await getAllVideosInHistoryFromServer(tokenResponse);
       dispatch({
-        type: "HISTORY_OPERATION",
+        type: "SET_HISTORY",
         payload: { history: response.history },
+      });
+      response = await getAllLikedVideosFromServer(tokenResponse);
+      dispatch({
+        type: "SET_LIKED_VIDEOS",
+        payload: { likes: response.likes },
       });
       navigate("/videos");
     } catch (e) {

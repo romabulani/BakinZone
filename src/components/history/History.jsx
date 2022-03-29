@@ -1,11 +1,10 @@
 import { CommonVideoCard } from "components";
 import { useData } from "contexts";
 import { useVideoOperations } from "hooks";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function History() {
   const { state } = useData();
-  const navigate = useNavigate();
   const { deleteAllVideosFromHistory } = useVideoOperations();
   return (
     <>
@@ -17,7 +16,7 @@ function History() {
           </div>
           {state.history.length > 0 && (
             <button
-              className="btn btn-link btn-link-error btn-fit-content"
+              className="btn btn-link btn-link-error btn-fit-content no-link-decoration"
               onClick={(e) => deleteAllVideosFromHistory(e)}
             >
               Clear History
@@ -40,12 +39,12 @@ function History() {
       {state.history.length === 0 && (
         <div className="flex-column-center margin-container no-playlist-container">
           <div>No videos watched.</div>
-          <button
-            className="btn btn-primary"
-            onClick={() => navigate("/videos")}
+          <Link
+            className="btn btn-primary no-link-decoration inline-flex-center"
+            to="/videos"
           >
             Explore
-          </button>
+          </Link>
         </div>
       )}
     </>
