@@ -8,6 +8,7 @@ import {
   VideoListingPage,
   VideoPage,
   HistoryPage,
+  LikedVideosPage,
 } from "pages";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -19,7 +20,7 @@ function App() {
     <div className="App">
       <ScrollToTop />
       <PlaylistModal />
-      <ToastContainer theme="dark" position="bottom-right" autoClose={3000} />
+      <ToastContainer theme="dark" position="bottom-right" autoClose={2000} />
       <Routes>
         <Route path="/" element={<VideoListingPage />} />
         <Route path="/signup" element={<SignupPage />} />
@@ -56,6 +57,14 @@ function App() {
           element={
             <PrivateRoute>
               <HistoryPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/liked"
+          element={
+            <PrivateRoute>
+              <LikedVideosPage />
             </PrivateRoute>
           }
         />

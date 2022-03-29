@@ -14,3 +14,4 @@ export { CommonVideoCard } from "./shared/CommonVideoCard";
 export { Video } from "./singlevideo/Video";
 export { History } from "./history/History";
 export { PrivateRoute } from "./authentication/PrivateRoute";
+export { LikedVideos } from "./likedVideos/LikedVideos";
