@@ -1,10 +1,9 @@
 import { CommonVideoCard } from "components";
 import { useData } from "contexts";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function LikedVideos() {
   const { state } = useData();
-  const navigate = useNavigate();
 
   return (
     <>
@@ -29,12 +28,12 @@ function LikedVideos() {
       {state.likes.length === 0 && (
         <div className="flex-column-center margin-container no-playlist-container">
           <div>No liked videos.</div>
-          <button
-            className="btn btn-primary"
-            onClick={() => navigate("/videos")}
+          <Link
+            className="btn btn-primary no-link-decoration inline-flex-center"
+            to="/videos"
           >
             Explore
-          </button>
+          </Link>
         </div>
       )}
     </>
