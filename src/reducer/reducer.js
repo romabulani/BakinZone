@@ -30,6 +30,11 @@ export const reducer = (state, action) => {
         ...state,
         likes: action.payload.likes,
       };
+    case "SET_SEARCH_TEXT":
+      return {
+        ...state,
+        searchText: action.payload.searchText,
+      };
     default:
       return state;
   }

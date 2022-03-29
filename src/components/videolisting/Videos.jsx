@@ -4,18 +4,28 @@ import { VideoCard } from "./VideoCard";
 import { Outlet } from "react-router-dom";
 
 function Videos() {
-  const { state, dispatch } = useData();
+  const { state, dispatch, setSearchBarText } = useData();
 
   const dispatchHandler = (category) => {
-    dispatch({ type: "CATEGORY", payload: { category: category } });
+    dispatch({ type: "CATEGORY", payload: { category } });
   };
 
   function getFilteredVideos() {
-    if (state.category === "All") return state.videos;
+    let filteredVideos = [];
+    if (state.category === "All") filteredVideos = state.videos;
     else
-      return state.videos.filter(
+      filteredVideos = state.videos.filter(
         (perVideo) => perVideo.category === state.category
       );
+
+    if (state.searchText !== "")
+      filteredVideos = state.videos.filter(
+        (video) =>
+          video.title.toLowerCase().includes(state.searchText.toLowerCase()) ||
+          video.category.toLowerCase().includes(state.searchText.toLowerCase())
+      );
+
+    return filteredVideos;
   }
 
   return (
@@ -39,11 +49,29 @@ function Videos() {
       </div>
 
       <div className="flex-row-center">
-        <div className="videos-container">
-          {getFilteredVideos().map((video) => (
-            <VideoCard video={video} key={video._id}></VideoCard>
-          ))}
-        </div>
+        {getFilteredVideos().length > 0 ? (
+          <div className="videos-container">
+            {getFilteredVideos().map((video) => (
+              <VideoCard video={video} key={video._id}></VideoCard>
+            ))}
+          </div>
+        ) : (
+          <div className="margin-container flex-column-center padding-top-8">
+            {`No Search Results found for "${state.searchText}"`}
+            <button
+              className="btn btn-primary no-link-decoration inline-flex-center"
+              onClick={() => {
+                setSearchBarText("");
+                dispatch({
+                  type: "SET_SEARCH_TEXT",
+                  payload: { searchText: "" },
+                });
+              }}
+            >
+              Explore
+            </button>
+          </div>
+        )}
       </div>
       <Outlet />
     </>

@@ -15,6 +15,7 @@ const initialState = {
   playlists: [],
   history: [],
   likes: [],
+  searchText: "",
 };
 
 const DataContext = createContext();
@@ -23,6 +24,7 @@ const DataProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [playlistModal, setPlaylistModal] = useState(false);
   const [currentVideo, setCurrentVideo] = useState({});
+  const [searchBarText, setSearchBarText] = useState("");
   useEffect(
     () =>
       (async () => {
@@ -49,6 +51,8 @@ const DataProvider = ({ children }) => {
         setPlaylistModal,
         currentVideo,
         setCurrentVideo,
+        searchBarText,
+        setSearchBarText,
       }}
     >
       {children}
