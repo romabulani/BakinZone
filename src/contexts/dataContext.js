@@ -8,6 +8,7 @@ import {
 import { reducer } from "reducer";
 import { getCategories, getVideos } from "services";
 
+// Two searchTexts, one for input field in navbar which is searchBarText and other in initial object with key searchText to perform search operation
 const initialState = {
   videos: [],
   categories: [],
@@ -15,6 +16,7 @@ const initialState = {
   playlists: [],
   history: [],
   likes: [],
+  watchLater: [],
   searchText: "",
 };
 
