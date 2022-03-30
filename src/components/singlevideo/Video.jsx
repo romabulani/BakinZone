@@ -18,6 +18,9 @@ function Video() {
     isLiked,
     addVideoToLikedVideos,
     deleteVideoFromLikedVideos,
+    addVideoToWatchLaterVideos,
+    inWatchLater,
+    deleteVideoFromWatchLaterVideos,
   } = useVideoOperations();
 
   const video = state.videos.find((video) => video._id === params.videoId);
@@ -27,6 +30,11 @@ function Video() {
     isLiked(video._id)
       ? deleteVideoFromLikedVideos(e, video._id)
       : addVideoToLikedVideos(e, video);
+
+  const watchLaterHandler = (e, video) =>
+    inWatchLater(video._id)
+      ? deleteVideoFromWatchLaterVideos(e, video._id)
+      : addVideoToWatchLaterVideos(e, video);
 
   const copyHandler = () => {
     navigator.clipboard.writeText(window.location.href);
@@ -67,8 +75,18 @@ function Video() {
                   )}
                   Like
                 </span>
-                <span className="chip category-chip">
-                  <FontAwesomeIcon icon={faClock} className="p-right-5" />
+                <span
+                  className="chip category-chip"
+                  onClick={(e) => watchLaterHandler(e, video)}
+                >
+                  {inWatchLater(video._id) ? (
+                    <FontAwesomeIcon
+                      icon="clock"
+                      className="p-right-5 keyword"
+                    />
+                  ) : (
+                    <FontAwesomeIcon icon={faClock} className="p-right-5" />
+                  )}
                   Watch Later
                 </span>
                 <span

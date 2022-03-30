@@ -1,5 +1,5 @@
 import { useAuth, useData } from "contexts";
-import { usePlaylistOperations } from "hooks";
+import { usePlaylistOperations, useVideoOperations } from "hooks";
 import React, { useEffect, useState } from "react";
 import "./playlistModal.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,6 +10,11 @@ function PlaylistModal() {
   const { state, playlistModal, setPlaylistModal, currentVideo } = useData();
   const { addPlaylist, removeVideoFromPlaylist, addVideoToPlaylist } =
     usePlaylistOperations();
+  const {
+    inWatchLater,
+    addVideoToWatchLaterVideos,
+    deleteVideoFromWatchLaterVideos,
+  } = useVideoOperations();
   const [newPlaylist, setNewPlaylist] = useState(false);
   const [playlistName, setPlaylistName] = useState("");
   const [watchLaterOption, setWatchLaterOption] = useState(false);
@@ -17,6 +22,7 @@ function PlaylistModal() {
   const { authToken } = useAuth();
 
   const createPlaylistHandler = (e) => {
+    e.preventDefault();
     const filteredPlaylists = state.playlists.filter(
       (playlist) => playlistName === playlist.name
     );
@@ -56,12 +62,28 @@ function PlaylistModal() {
       <div className="playlist-modal">
         <div className="flex-row-spacebetween">
           <div className="playlist playlist-header">
-            {watchLaterOption && (
-              <div className="watch-later">
-                <FontAwesomeIcon icon="clock" className="p-right-5" />
-                <span className="p-left-5">Add to Watch Later</span>
-              </div>
-            )}
+            {watchLaterOption &&
+              (inWatchLater(currentVideo._id) ? (
+                <div
+                  className="watch-later delete-icon"
+                  onClick={(e) =>
+                    deleteVideoFromWatchLaterVideos(e, currentVideo._id)
+                  }
+                >
+                  <FontAwesomeIcon icon="trash" className="p-right-5" />
+                  <span className="p-left-5 delete-icon">
+                    Remove from Watch Later
+                  </span>
+                </div>
+              ) : (
+                <div
+                  className="watch-later"
+                  onClick={(e) => addVideoToWatchLaterVideos(e, currentVideo)}
+                >
+                  <FontAwesomeIcon icon="clock" className="p-right-5" />
+                  <span className="p-left-5">Add to Watch Later</span>
+                </div>
+              ))}
             <div>Save to...</div>
           </div>
           <FontAwesomeIcon
@@ -92,25 +114,27 @@ function PlaylistModal() {
         </div>
 
         {newPlaylist ? (
-          <div className="new-playlist-container">
-            <label htmlFor="new-playlist-name">Name</label>
-            <input
-              type="text"
-              id="new-playlist-name"
-              placeholder="Enter Playlist Name"
-              className="input-primary input-full-width"
-              onChange={(e) => setPlaylistName(e.target.value.trim())}
-            />
-            <button
-              onClick={(e) => createPlaylistHandler(e)}
-              className={`btn btn-primary btn-dark-theme ${
-                playlistName === "" ? "disabled-cursor" : ""
-              }`}
-              disabled={playlistName === ""}
-            >
-              Create
-            </button>
-          </div>
+          <form onSubmit={(e) => createPlaylistHandler(e)}>
+            <div className="new-playlist-container">
+              <label htmlFor="new-playlist-name">Name</label>
+              <input
+                type="text"
+                id="new-playlist-name"
+                placeholder="Enter Playlist Name"
+                className="input-primary input-full-width"
+                onChange={(e) => setPlaylistName(e.target.value.trim())}
+              />
+              <button
+                type="submit"
+                className={`btn btn-primary btn-dark-theme ${
+                  playlistName === "" ? "disabled-cursor" : ""
+                }`}
+                disabled={playlistName === ""}
+              >
+                Create
+              </button>
+            </div>
+          </form>
         ) : (
           <div
             className="playlist create-playlist"

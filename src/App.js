@@ -9,6 +9,7 @@ import {
   VideoPage,
   HistoryPage,
   LikedVideosPage,
+  WatchLaterPage,
 } from "pages";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -65,6 +66,14 @@ function App() {
           element={
             <PrivateRoute>
               <LikedVideosPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/watchlater"
+          element={
+            <PrivateRoute>
+              <WatchLaterPage />
             </PrivateRoute>
           }
         />

@@ -30,6 +30,11 @@ export const reducer = (state, action) => {
         ...state,
         likes: action.payload.likes,
       };
+    case "SET_WATCH_LATER":
+      return {
+        ...state,
+        watchLater: action.payload.watchLater,
+      };
     case "SET_SEARCH_TEXT":
       return {
         ...state,

@@ -7,25 +7,21 @@ import { useAuth, useData } from "contexts";
 function Navigation() {
   const navigate = useNavigate();
   const { authToken } = useAuth();
-  const { dispatch, searchBarText, setSearchBarText } = useData();
+  const { searchBarText, setSearchBarText, dispatch } = useData();
 
-  const searchHandler = (e, text) => {
-    if (text) {
-      navigate("/videos");
+  const searchHandler = (e) => {
+    e.preventDefault();
+    if (searchBarText.trim().length > 0) {
       dispatch({
         type: "SET_SEARCH_TEXT",
         payload: { searchText: searchBarText },
       });
-    }
-    if (e.key === "Enter" || e.key === "Backspace" || e.target.value === "") {
-      navigate("/videos");
-      dispatch({
-        type: "SET_SEARCH_TEXT",
-        payload: { searchText: e.target.value.trim() },
+      navigate({
+        pathname: "/videos",
+        search: `query=${searchBarText.trim()}`,
       });
     }
   };
-
   return (
     <nav className="nav-container">
       <div className="brand">
@@ -38,21 +34,20 @@ function Navigation() {
           Bakin Zone
         </Link>
       </div>
-      <div className="searchbar-container" aria-label="search">
+
+      <form onSubmit={searchHandler} className="searchbar-container">
         <input
           type="search"
           placeholder="Search for videos.."
           className="nav-search-field"
           value={searchBarText}
           onChange={(e) => setSearchBarText(e.target.value)}
-          onKeyDown={(e) => searchHandler(e)}
         />
-        <FontAwesomeIcon
-          icon="magnifying-glass"
-          className="search-icon"
-          onClick={(e) => searchHandler(e, searchBarText)}
-        />
-      </div>
+        <button className="btn-no-decoration text-white" type="submit">
+          <FontAwesomeIcon icon="magnifying-glass" className="search-icon" />
+        </button>
+      </form>
+
       <div
         className="profile-icon"
         onClick={() => (authToken ? navigate("/profile") : navigate("/login"))}

@@ -7,6 +7,9 @@ import {
   getAllLikedVideosFromServer,
   addVideoToLikedVideosInServer,
   deleteVideoFromLikedVideosInServer,
+  getWatchLaterVideosFromServer,
+  addVideoToWatchLaterVideosInServer,
+  deleteVideoFromWatchLaterVideosInServer,
 } from "services";
 
 function useVideoOperations() {
@@ -30,10 +33,8 @@ function useVideoOperations() {
   };
 
   const deleteVideoFromHistory = async (e, videoId) => {
-    e.target.disabled = true;
     e.preventDefault();
     const response = await deleteVideoFromHistoryInServer(authToken, videoId);
-    e.target.disabled = false;
 
     dispatch({
       type: "SET_HISTORY",
@@ -70,13 +71,11 @@ function useVideoOperations() {
   };
 
   const deleteVideoFromLikedVideos = async (e, videoId) => {
-    e.target.disabled = true;
     e.preventDefault();
     const response = await deleteVideoFromLikedVideosInServer(
       authToken,
       videoId
     );
-    e.target.disabled = false;
 
     dispatch({
       type: "SET_LIKED_VIDEOS",
@@ -87,6 +86,40 @@ function useVideoOperations() {
   const isLiked = (videoId) =>
     state.likes.find((video) => video._id === videoId);
 
+  const getWatchLaterVideos = async () => {
+    const response = await getWatchLaterVideosFromServer(authToken);
+    dispatch({
+      type: "SET_WATCH_LATER",
+      payload: { watchLater: response.watchlater },
+    });
+  };
+
+  const addVideoToWatchLaterVideos = async (e, video) => {
+    e.target.disabled = true;
+    const response = await addVideoToWatchLaterVideosInServer(authToken, video);
+    e.target.disabled = false;
+    dispatch({
+      type: "SET_WATCH_LATER",
+      payload: { watchLater: response.watchlater },
+    });
+  };
+
+  const deleteVideoFromWatchLaterVideos = async (e, videoId) => {
+    e.preventDefault();
+    const response = await deleteVideoFromWatchLaterVideosInServer(
+      authToken,
+      videoId
+    );
+
+    dispatch({
+      type: "SET_WATCH_LATER",
+      payload: { watchLater: response.watchlater },
+    });
+  };
+
+  const inWatchLater = (videoId) =>
+    state.watchLater.find((video) => video._id === videoId);
+
   return {
     getAllVideosInHistory,
     addVideoToHistory,
@@ -96,6 +129,10 @@ function useVideoOperations() {
     addVideoToLikedVideos,
     deleteVideoFromLikedVideos,
     isLiked,
+    getWatchLaterVideos,
+    addVideoToWatchLaterVideos,
+    deleteVideoFromWatchLaterVideos,
+    inWatchLater,
   };
 }
 

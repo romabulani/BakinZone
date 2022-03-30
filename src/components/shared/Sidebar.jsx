@@ -61,7 +61,7 @@ function Sidebar() {
         </NavLink>
 
         <NavLink
-          to="/"
+          to="/watchlater"
           className={({ isActive }) =>
             isActive ? "sidebar-item sidebar-active" : "sidebar-item"
           }

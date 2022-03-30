@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth, useData } from "contexts";
+import { useAuth } from "contexts";
 import "./profile.css";
 import { toast } from "react-toastify";
 
 function ProfileDetails() {
   const { setAuthToken, authUser, setAuthUser } = useAuth();
-  const { dispatch } = useData();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,9 +18,6 @@ function ProfileDetails() {
     toast.success("Logout successful");
     setAuthToken("");
     setAuthUser(null);
-    dispatch({ type: "SET_PLAYLISTS", payload: { playlists: [] } });
-    dispatch({ type: "SET_HISTORY", payload: { history: [] } });
-    dispatch({ type: "SET_LIKED_VIDEOS", payload: { likes: [] } });
     navigate("/videos");
   }
 

@@ -56,7 +56,6 @@ function usePlaylistOperations() {
   };
 
   const removeVideoFromPlaylist = async (e, playlistId, currVideoId) => {
-    e.target.disabled = true;
     e.preventDefault();
     let response;
     if (currVideoId)
@@ -71,7 +70,6 @@ function usePlaylistOperations() {
         playlistId,
         currentVideo._id
       );
-    e.target.disabled = false;
     const newPlaylists = state.playlists.reduce(
       (acc, curr) =>
         curr._id === response.playlist._id
