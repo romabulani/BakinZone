@@ -119,7 +119,64 @@ const deleteVideoFromLikedVideosInServer = async (authorization, videoId) => {
   } catch (e) {
     toast.error(`Couldn't update playlist! Try again.`);
     console.log(
-      "deleteVideoFromLikedVideosInServer : Error in deleting video from History",
+      "deleteVideoFromLikedVideosInServer : Error in deleting video from liked videos",
+      e
+    );
+  }
+};
+
+const getWatchLaterVideosFromServer = async (authorization) => {
+  try {
+    const response = await axios.get("/api/user/watchlater", {
+      headers: { authorization },
+    });
+    if (response.status === 200) return response.data;
+    else throw new Error();
+  } catch (e) {
+    console.log(
+      "getWatchLaterVideosFromServer : Error in fetching watch later videos.",
+      e
+    );
+  }
+};
+
+const addVideoToWatchLaterVideosInServer = async (authorization, video) => {
+  try {
+    const response = await axios.post(
+      "/api/user/watchlater",
+      { video },
+      {
+        headers: { authorization },
+      }
+    );
+    if (response.status === 201) {
+      toast.success("Added to Watch Later");
+      return response.data;
+    } else throw new Error();
+  } catch (e) {
+    console.log(
+      "addVideoToWatchLaterVideosInServer : Error in adding video to Watch Later",
+      e
+    );
+  }
+};
+
+const deleteVideoFromWatchLaterVideosInServer = async (
+  authorization,
+  videoId
+) => {
+  try {
+    const response = await axios.delete(`/api/user/watchlater/${videoId}`, {
+      headers: { authorization },
+    });
+    if (response.status === 200) {
+      toast.success("Removed from Watch Later");
+      return response.data;
+    } else throw new Error();
+  } catch (e) {
+    toast.error(`Couldn't update playlist! Try again.`);
+    console.log(
+      "deleteVideoFromWatchLaterVideosInServer : Error in deleting video from Watch Later",
       e
     );
   }
@@ -133,4 +190,7 @@ export {
   getAllLikedVideosFromServer,
   addVideoToLikedVideosInServer,
   deleteVideoFromLikedVideosInServer,
+  getWatchLaterVideosFromServer,
+  addVideoToWatchLaterVideosInServer,
+  deleteVideoFromWatchLaterVideosInServer,
 };
