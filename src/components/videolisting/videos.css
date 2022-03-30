@@ -91,6 +91,10 @@
   font-weight: bold;
 }
 
+.search-header {
+  margin-top: 1rem;
+}
+
 @media only screen and (max-width: 640px) {
   .categories,
   .videos-container {

@@ -22,6 +22,7 @@ html {
 
 input,
 select,
-textarea {
+textarea,
+.text-white {
   color: var(--text-color);
 }
