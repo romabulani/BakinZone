@@ -15,3 +15,4 @@ export { Video } from "./singlevideo/Video";
 export { History } from "./history/History";
 export { PrivateRoute } from "./authentication/PrivateRoute";
 export { LikedVideos } from "./likedVideos/LikedVideos";
+export { WatchLater } from "./watchLater/WatchLater";
