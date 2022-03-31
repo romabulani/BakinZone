@@ -18,3 +18,4 @@ export { LikedVideos } from "./likedVideos/LikedVideos";
 export { WatchLater } from "./watchLater/WatchLater";
 export { HeroSection } from "./landing-page/HeroSection";
 export { MobileProfile } from "./shared/MobileProfile";
+export { NotFound } from "./shared/NotFound";

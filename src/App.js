@@ -7,6 +7,7 @@ import {
   MobileProfile,
   MockAPI,
   Navigation,
+  NotFound,
   PlaylistModal,
   Playlists,
   PrivateRoute,
@@ -93,6 +94,7 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </div>
