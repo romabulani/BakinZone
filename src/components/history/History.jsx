@@ -1,13 +1,16 @@
-import { CommonVideoCard } from "components";
+import { CommonVideoCard, Sidebar } from "components";
 import { useData } from "contexts";
 import { useVideoOperations } from "hooks";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 function History() {
   const { state } = useData();
   const { deleteAllVideosFromHistory } = useVideoOperations();
+  const [disable, setDisable] = useState(false);
   return (
-    <>
+    <div className="middle-content">
+      <Sidebar />
       <div className="flex-column">
         <div className="flex-row-justify-space-between">
           <div className="flex-column-start">
@@ -17,7 +20,8 @@ function History() {
           {state.history.length > 0 && (
             <button
               className="btn btn-link btn-link-error btn-fit-content no-link-decoration"
-              onClick={(e) => deleteAllVideosFromHistory(e)}
+              disabled={disable}
+              onClick={() => deleteAllVideosFromHistory(setDisable)}
             >
               Clear History
             </button>
@@ -47,7 +51,7 @@ function History() {
           </Link>
         </div>
       )}
-    </>
+    </div>
   );
 }
 

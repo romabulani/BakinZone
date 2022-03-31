@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "contexts";
 import "./profile.css";
 import { toast } from "react-toastify";
+import { Sidebar } from "components";
 
 function ProfileDetails() {
   const { setAuthToken, authUser, setAuthUser } = useAuth();
@@ -22,16 +23,34 @@ function ProfileDetails() {
   }
 
   return (
-    <div className="flex-row-center">
-      <div className="logout-container flex-column-center">
-        <h4 className="heading4">ACCOUNT DETAILS</h4>
-        <div className="row-format">
-          Name :{` ${authUser.firstName} ${authUser.lastName}`}
+    <div className="middle-content">
+      <Sidebar />
+      <div className="flex-row-center">
+        <div className="logout-container flex-column-center">
+          <div className="large-font-size">
+            Account Details<hr className="section-line"></hr>
+          </div>
+
+          <div className="flex-row-center profile-details">
+            <div className="flex-column profile-column">
+              <p>Name</p>
+              <p>Email</p>
+            </div>
+            <div className="flex-column  profile-column">
+              <p>{` ${authUser.firstName} ${authUser.lastName}`}</p>
+              <p>{` ${authUser.email}`}</p>
+            </div>
+          </div>
+          <div className="large-font-size">
+            Account Settings<hr className="section-line"></hr>
+          </div>
+          <button
+            className="btn btn-outline-error logout-btn"
+            onClick={logoutHandler}
+          >
+            Log Out
+          </button>
         </div>
-        <div className="row-format">Email :{` ${authUser.email}`}</div>
-        <button className="btn btn-outline-error" onClick={logoutHandler}>
-          Log Out
-        </button>
       </div>
     </div>
   );

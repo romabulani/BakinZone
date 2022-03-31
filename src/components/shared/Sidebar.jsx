@@ -71,7 +71,7 @@ function Sidebar() {
         </NavLink>
       </aside>
       <div className="mobile-bottom-nav">
-        <Link to="/videos" className="mobile-nav-item">
+        <Link to="/" className="mobile-nav-item">
           <div className="mobile-nav-item">
             <FontAwesomeIcon icon="home" className="bottom-icon" />
             <span>Home</span>

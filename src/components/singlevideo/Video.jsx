@@ -6,12 +6,16 @@ import { useAuth, useData } from "contexts";
 import { faClock, faThumbsUp } from "@fortawesome/free-regular-svg-icons";
 import { RiPlayListAddFill } from "react-icons/ri";
 import { useVideoOperations } from "hooks";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { Sidebar } from "components";
 
 function Video() {
   const params = useParams();
   const { state, setPlaylistModal, setCurrentVideo } = useData();
+  const [disableLike, setDisableLike] = useState(false);
+  const [disableWatchLater, setDisableWatchLater] = useState(false);
+
   const { authToken } = useAuth();
   const {
     addVideoToHistory,
@@ -28,13 +32,13 @@ function Video() {
   useEffect(() => setCurrentVideo(video), [video]);
   const likeHandler = (e, video) =>
     isLiked(video._id)
-      ? deleteVideoFromLikedVideos(e, video._id)
-      : addVideoToLikedVideos(e, video);
+      ? deleteVideoFromLikedVideos(e, video._id, setDisableLike)
+      : addVideoToLikedVideos(video, setDisableLike);
 
   const watchLaterHandler = (e, video) =>
     inWatchLater(video._id)
-      ? deleteVideoFromWatchLaterVideos(e, video._id)
-      : addVideoToWatchLaterVideos(e, video);
+      ? deleteVideoFromWatchLaterVideos(e, video._id, setDisableWatchLater)
+      : addVideoToWatchLaterVideos(e, video, setDisableWatchLater);
 
   const copyHandler = () => {
     navigator.clipboard.writeText(window.location.href);
@@ -42,7 +46,8 @@ function Video() {
   };
 
   return (
-    <>
+    <div className="middle-content">
+      <Sidebar />
       {video && (
         <div className="flex-row-justify-space-around margin-container video-and-notes">
           <div className="video-content flex-column">
@@ -63,7 +68,8 @@ function Video() {
               <div className="video-buttons">
                 <span
                   className="chip category-chip"
-                  onClick={(e) => likeHandler(e, video)}
+                  style={{ pointerEvents: disableLike ? "none" : "auto" }}
+                  onClick={(e) => !disableLike && likeHandler(e, video)}
                 >
                   {isLiked(video._id) ? (
                     <FontAwesomeIcon
@@ -77,7 +83,9 @@ function Video() {
                 </span>
                 <span
                   className="chip category-chip"
-                  onClick={(e) => watchLaterHandler(e, video)}
+                  onClick={(e) =>
+                    !disableWatchLater && watchLaterHandler(e, video)
+                  }
                 >
                   {inWatchLater(video._id) ? (
                     <FontAwesomeIcon
@@ -146,7 +154,7 @@ function Video() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
 

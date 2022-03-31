@@ -2,9 +2,12 @@ import "components/playlists/playlists.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { usePlaylistOperations, useVideoOperations } from "hooks";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 function CommonVideoCard({ video, playlistCategory }) {
   const { removeVideoFromPlaylist } = usePlaylistOperations();
+  const [disable, setDisable] = useState(false);
+
   const {
     deleteVideoFromHistory,
     deleteVideoFromLikedVideos,
@@ -13,13 +16,12 @@ function CommonVideoCard({ video, playlistCategory }) {
 
   const onClickDeleteHandler = (e) => {
     if (playlistCategory === "likedVideo")
-      deleteVideoFromLikedVideos(e, video._id);
+      deleteVideoFromLikedVideos(e, video._id, setDisable);
     else if (playlistCategory === "watchHistory")
-      deleteVideoFromHistory(e, video._id);
+      deleteVideoFromHistory(e, video._id, setDisable);
     else if (playlistCategory === "watchLater")
-      deleteVideoFromWatchLaterVideos(e, video._id);
-    else removeVideoFromPlaylist(e, playlistCategory, video._id);
-    setDisable(false);
+      deleteVideoFromWatchLaterVideos(e, video._id, setDisable);
+    else removeVideoFromPlaylist(e, playlistCategory, setDisable, video._id);
   };
 
   return (
@@ -32,19 +34,20 @@ function CommonVideoCard({ video, playlistCategory }) {
             className="video-thumbnail"
           ></img>
         </div>
-        <div className="title-and-options playlist-title">
-          <span>{video.title}</span>
-          <button
-            onClick={(e) => onClickDeleteHandler(e)}
-            className="btn-no-decoration"
-          >
-            <FontAwesomeIcon
-              icon="trash"
-              className="delete-icon large-font-size"
-            />
-          </button>
-        </div>
       </Link>
+      <div className="title-and-options playlist-title">
+        <span>{video.title}</span>
+        <button
+          onClick={(e) => onClickDeleteHandler(e)}
+          className="btn-no-decoration"
+          disabled={disable}
+        >
+          <FontAwesomeIcon
+            icon="trash"
+            className="delete-icon large-font-size"
+          />
+        </button>
+      </div>
     </div>
   );
 }

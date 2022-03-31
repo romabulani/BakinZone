@@ -1,11 +1,12 @@
-import { CommonVideoCard } from "components";
+import { CommonVideoCard, Sidebar } from "components";
 import { useData } from "contexts";
 import { Link } from "react-router-dom";
 
 function WatchLater() {
   const { state } = useData();
   return (
-    <>
+    <div className="middle-content">
+      <Sidebar />
       <div className="flex-column">
         <div className="flex-column-start">
           <div className="large-font-size">Watch Later</div>
@@ -35,7 +36,7 @@ function WatchLater() {
           </Link>
         </div>
       )}
-    </>
+    </div>
   );
 }
 
