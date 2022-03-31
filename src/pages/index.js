@@ -8,3 +8,4 @@ export { VideoPage } from "./VideoPage";
 export { HistoryPage } from "./HistoryPage";
 export { LikedVideosPage } from "./LikedVideosPage";
 export { WatchLaterPage } from "./WatchLaterPage";
+export { LandingPage } from "./LandingPage";

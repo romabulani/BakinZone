@@ -10,6 +10,7 @@ import {
   HistoryPage,
   LikedVideosPage,
   WatchLaterPage,
+  LandingPage,
 } from "pages";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
@@ -23,7 +24,7 @@ function App() {
       <PlaylistModal />
       <ToastContainer theme="dark" position="bottom-right" autoClose={2000} />
       <Routes>
-        <Route path="/" element={<VideoListingPage />} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/mock-api" element={<MockAPI />} />
