@@ -19,6 +19,12 @@ function HeroSection() {
           <Link
             className="btn btn-primary no-link-decoration inline-flex-center hero-btn"
             to="/videos"
+            onClick={() => {
+              dispatch({
+                type: "CATEGORY",
+                payload: { category: "All" },
+              });
+            }}
           >
             Explore Now
           </Link>
