@@ -18,6 +18,9 @@ function PlaylistModal() {
   const [newPlaylist, setNewPlaylist] = useState(false);
   const [playlistName, setPlaylistName] = useState("");
   const [watchLaterOption, setWatchLaterOption] = useState(false);
+  const [disableWatchLater, setDisableWatchLater] = useState(false);
+  const [disableCheckbox, setDisableCheckbox] = useState(false);
+  const [disableCreate, setDisableCreate] = useState(false);
   const navigate = useNavigate();
   const { authToken } = useAuth();
 
@@ -27,7 +30,7 @@ function PlaylistModal() {
       (playlist) => playlistName === playlist.name
     );
     if (filteredPlaylists.length === 0) {
-      addPlaylist(e, playlistName);
+      addPlaylist(playlistName, setDisableCreate);
       setNewPlaylist(false);
     } else toast.info("Playlist already exists");
   };
@@ -50,8 +53,8 @@ function PlaylistModal() {
 
   const videoInPlaylistHandler = (e, playlist) =>
     isVideoInPlaylist(playlist)
-      ? removeVideoFromPlaylist(e, playlist._id)
-      : addVideoToPlaylist(e, playlist._id);
+      ? removeVideoFromPlaylist(e, playlist._id, setDisableCheckbox)
+      : addVideoToPlaylist(playlist._id, setDisableCheckbox);
 
   return (
     <div
@@ -78,7 +81,14 @@ function PlaylistModal() {
               ) : (
                 <div
                   className="watch-later"
-                  onClick={(e) => addVideoToWatchLaterVideos(e, currentVideo)}
+                  onClick={(e) =>
+                    !disableWatchLater &&
+                    addVideoToWatchLaterVideos(
+                      e,
+                      currentVideo,
+                      setDisableWatchLater
+                    )
+                  }
                 >
                   <FontAwesomeIcon icon="clock" className="p-right-5" />
                   <span className="p-left-5">Add to Watch Later</span>
@@ -104,6 +114,7 @@ function PlaylistModal() {
                 id={playlist._id}
                 checked={isVideoInPlaylist(playlist)}
                 className="p-right-5"
+                disabled={disableCheckbox}
                 onChange={(e) => videoInPlaylistHandler(e, playlist)}
               />
               <label htmlFor={playlist._id} className="checkbox-label">
@@ -129,7 +140,7 @@ function PlaylistModal() {
                 className={`btn btn-primary btn-dark-theme ${
                   playlistName === "" ? "disabled-cursor" : ""
                 }`}
-                disabled={playlistName === ""}
+                disabled={playlistName === "" || !setDisableCreate}
               >
                 Create
               </button>

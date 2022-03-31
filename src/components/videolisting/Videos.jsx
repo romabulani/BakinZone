@@ -3,6 +3,7 @@ import "./videos.css";
 import { VideoCard } from "./VideoCard";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Sidebar } from "components";
 
 function Videos() {
   const { state, dispatch, setSearchBarText } = useData();
@@ -42,7 +43,8 @@ function Videos() {
   }
 
   return (
-    <>
+    <div className="middle-content">
+      <Sidebar />
       {!search && (
         <div>
           <div className="categories">
@@ -102,7 +104,7 @@ function Videos() {
       )}
 
       <Outlet />
-    </>
+    </div>
   );
 }
 

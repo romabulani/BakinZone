@@ -1,4 +1,4 @@
-import { CommonVideoCard } from "components";
+import { CommonVideoCard, Sidebar } from "components";
 import { useData } from "contexts";
 import { Link, useParams } from "react-router-dom";
 
@@ -10,7 +10,8 @@ function SinglePlaylist() {
   )[0];
 
   return (
-    <>
+    <div className="middle-content">
+      <Sidebar />
       {playlist && (
         <div className="flex-column">
           <div className="flex-column-start">
@@ -42,7 +43,7 @@ function SinglePlaylist() {
           </Link>
         </div>
       )}
-    </>
+    </div>
   );
 }
 

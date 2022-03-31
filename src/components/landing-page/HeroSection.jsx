@@ -6,7 +6,7 @@ function HeroSection() {
   const { state, dispatch } = useData();
 
   return (
-    <div className="flex-column">
+    <div className="flex-column middle-content">
       <div className="hero-section flex-row-center">
         <div className="hero-text-container flex-column">
           <div className="hero-text flex-column">

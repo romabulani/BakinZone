@@ -2,6 +2,7 @@
   background-color: var(--nav-color);
   margin-top: 1rem;
   padding: 1rem;
+  padding-bottom: 2rem;
 }
 
 .footer-header {
