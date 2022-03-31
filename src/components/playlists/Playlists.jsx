@@ -3,7 +3,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./playlists.css";
 import { usePlaylistOperations } from "hooks";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { RiPlayListAddFill } from "react-icons/ri";
 import { Sidebar } from "components";
 
@@ -63,7 +63,6 @@ function Playlists() {
             ))}
           </div>
         </div>
-        <Outlet />
       </div>
     </div>
   );

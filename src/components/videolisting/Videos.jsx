@@ -1,7 +1,7 @@
 import { useData } from "contexts";
 import "./videos.css";
 import { VideoCard } from "./VideoCard";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Sidebar } from "components";
 
@@ -102,8 +102,6 @@ function Videos() {
           </div>
         </div>
       )}
-
-      <Outlet />
     </div>
   );
 }
