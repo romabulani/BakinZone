@@ -1,17 +1,23 @@
-import { MockAPI, PlaylistModal, PrivateRoute, ScrollToTop } from "components";
 import {
-  LoginPage,
-  PlaylistPage,
-  PlaylistsPage,
-  ProfilePage,
-  SignupPage,
-  VideoListingPage,
-  VideoPage,
-  HistoryPage,
-  LikedVideosPage,
-  WatchLaterPage,
-  LandingPage,
-} from "pages";
+  Footer,
+  HeroSection,
+  History,
+  LikedVideos,
+  LoginForm,
+  MobileProfile,
+  MockAPI,
+  Navigation,
+  PlaylistModal,
+  Playlists,
+  PrivateRoute,
+  ProfileDetails,
+  ScrollToTop,
+  SignupForm,
+  SinglePlaylist,
+  Video,
+  Videos,
+  WatchLater,
+} from "components";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
@@ -19,22 +25,23 @@ import "./App.css";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App pagewrapper">
+      <Navigation />
       <ScrollToTop />
       <PlaylistModal />
       <ToastContainer theme="dark" position="bottom-right" autoClose={2000} />
       <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/" element={<HeroSection />} />
+        <Route path="/signup" element={<SignupForm />} />
+        <Route path="/login" element={<LoginForm />} />
         <Route path="/mock-api" element={<MockAPI />} />
-        <Route path="/videos" element={<VideoListingPage />} />
-        <Route path="/videos/:videoId" element={<VideoPage />} />
+        <Route path="/videos" element={<Videos />} />
+        <Route path="/videos/:videoId" element={<Video />} />
         <Route
-          path="/profile"
+          path="/account"
           element={
             <PrivateRoute>
-              <ProfilePage />
+              <ProfileDetails />
             </PrivateRoute>
           }
         />
@@ -42,7 +49,7 @@ function App() {
           path="/playlists"
           element={
             <PrivateRoute>
-              <PlaylistsPage />
+              <Playlists />
             </PrivateRoute>
           }
         />
@@ -50,7 +57,7 @@ function App() {
           path="/playlists/:playlistId"
           element={
             <PrivateRoute>
-              <PlaylistPage />
+              <SinglePlaylist />
             </PrivateRoute>
           }
         />
@@ -58,7 +65,7 @@ function App() {
           path="/history"
           element={
             <PrivateRoute>
-              <HistoryPage />
+              <History />
             </PrivateRoute>
           }
         />
@@ -66,7 +73,7 @@ function App() {
           path="/liked"
           element={
             <PrivateRoute>
-              <LikedVideosPage />
+              <LikedVideos />
             </PrivateRoute>
           }
         />
@@ -74,11 +81,20 @@ function App() {
           path="/watchlater"
           element={
             <PrivateRoute>
-              <WatchLaterPage />
+              <WatchLater />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoute>
+              <MobileProfile />
             </PrivateRoute>
           }
         />
       </Routes>
+      <Footer />
     </div>
   );
 }
