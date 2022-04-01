@@ -30,7 +30,7 @@ function App() {
       <Navigation />
       <ScrollToTop />
       <PlaylistModal />
-      <ToastContainer theme="dark" position="bottom-right" autoClose={2000} />
+      <ToastContainer theme="dark" position="bottom-right" autoClose={800} />
       <Routes>
         <Route path="/" element={<HeroSection />} />
         <Route path="/signup" element={<SignupForm />} />
