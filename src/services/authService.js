@@ -20,7 +20,6 @@ const postLoginData = async (email, password) => {
 const postSignupData = async (formData) => {
   try {
     const response = await axios.post("/api/auth/signup", formData);
-    console.log(response);
     if (response.status === 201) {
       toast.success("Sign up successful.");
       return response.data;

@@ -41,7 +41,7 @@ function useVideoOperations() {
         type: "SET_HISTORY",
         payload: { history: response.history },
       });
-    } finally {
+    } catch (e) {
       setDisable(false);
     }
   };
@@ -92,7 +92,7 @@ function useVideoOperations() {
         type: "SET_LIKED_VIDEOS",
         payload: { likes: response.likes },
       });
-    } finally {
+    } catch (e) {
       setDisable(false);
     }
   };
@@ -136,7 +136,7 @@ function useVideoOperations() {
         type: "SET_WATCH_LATER",
         payload: { watchLater: response.watchlater },
       });
-    } finally {
+    } catch (e) {
       setDisable(false);
     }
   };

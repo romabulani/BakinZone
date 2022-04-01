@@ -26,7 +26,11 @@ function CommonVideoCard({ video, playlistCategory }) {
 
   return (
     <div className="video-card playlist-card">
-      <Link to={`/videos/${video._id}`} className="no-link-decoration">
+      <Link
+        to={`/videos/${video._id}`}
+        className="no-link-decoration"
+        style={{ pointerEvents: disable ? "none" : "auto" }}
+      >
         <div className="video-img-container">
           <img
             src={`https://i.ytimg.com/vi/${video._id}/0.jpg`}
