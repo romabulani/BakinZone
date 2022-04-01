@@ -142,8 +142,8 @@ function useSignupHandler() {
       if (checkValidation()) {
         const response = await postSignupData(formData);
         loginHandler(null, null, null, {
-          email: response.createdUser.email,
-          password: response.createdUser.password,
+          email: formData.email,
+          password: formData.password,
         });
       }
     } catch (e) {
