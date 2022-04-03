@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useAuth } from "contexts";
 import { toast } from "react-toastify";
 
 const getAllVideosInHistoryFromServer = async (authorization) => {
@@ -64,6 +65,7 @@ const deleteAllVideosFromHistoryInServer = async (authorization) => {
     } else throw new Error();
   } catch (e) {
     toast.error(`Couldn't clear history`);
+    resetFunction();
     console.log(
       "deleteVideoFromHistoryInServer : Error in deleting video from History",
       e
@@ -100,6 +102,8 @@ const addVideoToLikedVideosInServer = async (authorization, video) => {
       return response.data;
     } else throw new Error();
   } catch (e) {
+    resetFunction();
+    toast.error(`Couldn't add video to liked videos! Try again.`);
     console.log(
       "addVideoToLikedVideosInServer : Error in adding video to liked videos",
       e
@@ -117,6 +121,7 @@ const deleteVideoFromLikedVideosInServer = async (authorization, videoId) => {
       return response.data;
     } else throw new Error();
   } catch (e) {
+    resetFunction();
     toast.error(`Couldn't update playlist! Try again.`);
     console.log(
       "deleteVideoFromLikedVideosInServer : Error in deleting video from liked videos",
@@ -154,6 +159,8 @@ const addVideoToWatchLaterVideosInServer = async (authorization, video) => {
       return response.data;
     } else throw new Error();
   } catch (e) {
+    resetFunction();
+    toast.error(`Couldn't add video in watch later! Try again.`);
     console.log(
       "addVideoToWatchLaterVideosInServer : Error in adding video to Watch Later",
       e
@@ -174,6 +181,7 @@ const deleteVideoFromWatchLaterVideosInServer = async (
       return response.data;
     } else throw new Error();
   } catch (e) {
+    resetFunction();
     toast.error(`Couldn't update playlist! Try again.`);
     console.log(
       "deleteVideoFromWatchLaterVideosInServer : Error in deleting video from Watch Later",

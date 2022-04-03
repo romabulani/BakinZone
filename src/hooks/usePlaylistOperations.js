@@ -7,10 +7,13 @@ import {
   removeVideoFromPlaylistInServer,
   deletePlaylistInServer,
 } from "services";
+import { useVideoOperations } from "./useVideoOperations";
 
 function usePlaylistOperations() {
   const { authToken } = useAuth();
   const { dispatch, currentVideo, state } = useData();
+
+  const { resetFunction } = useVideoOperations();
 
   const getAllPlaylists = async () => {
     const response = await getAllPlaylistsFromServer(authToken);
@@ -30,6 +33,8 @@ function usePlaylistOperations() {
         payload: { playlists: response.playlists },
       });
       return response.playlists[response.playlists.length - 1];
+    } catch (e) {
+      resetFunction();
     } finally {
       setDisable(false);
     }
@@ -55,6 +60,8 @@ function usePlaylistOperations() {
         type: "SET_PLAYLISTS",
         payload: { playlists: newPlaylists },
       });
+    } catch (e) {
+      resetFunction();
     } finally {
       setDisable(false);
     }
@@ -93,6 +100,8 @@ function usePlaylistOperations() {
         type: "SET_PLAYLISTS",
         payload: { playlists: newPlaylists },
       });
+    } catch (e) {
+      resetFunction();
     } finally {
       setDisable(false);
     }

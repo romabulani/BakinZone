@@ -1,4 +1,5 @@
 import { useAuth, useData } from "contexts";
+import { useNavigate } from "react-router-dom";
 import {
   getAllVideosInHistoryFromServer,
   addVideoToHistoryInServer,
@@ -13,8 +14,18 @@ import {
 } from "services";
 
 function useVideoOperations() {
-  const { authToken } = useAuth();
-  const { state, dispatch } = useData();
+  const { setAuthToken, setAuthUser } = useAuth();
+  const { state, dispatch, setPlaylistModal } = useData();
+  const navigate = useNavigate();
+
+  function resetFunction() {
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("authUser");
+    setAuthToken("");
+    setAuthUser(null);
+    setPlaylistModal(false);
+    navigate("/login");
+  }
 
   const getAllVideosInHistory = async () => {
     const response = await getAllVideosInHistoryFromServer(authToken);
@@ -42,6 +53,7 @@ function useVideoOperations() {
         payload: { history: response.history },
       });
     } catch (e) {
+      resetFunction();
       setDisable(false);
     }
   };
@@ -76,6 +88,7 @@ function useVideoOperations() {
         payload: { likes: response.likes },
       });
     } finally {
+      resetFunction();
       setDisable(false);
     }
   };
@@ -93,6 +106,7 @@ function useVideoOperations() {
         payload: { likes: response.likes },
       });
     } catch (e) {
+      resetFunction();
       setDisable(false);
     }
   };
@@ -119,6 +133,8 @@ function useVideoOperations() {
         type: "SET_WATCH_LATER",
         payload: { watchLater: response.watchlater },
       });
+    } catch (e) {
+      resetFunction();
     } finally {
       setDisable(false);
     }
@@ -138,6 +154,7 @@ function useVideoOperations() {
       });
     } catch (e) {
       setDisable(false);
+      resetFunction();
     }
   };
 
@@ -157,6 +174,7 @@ function useVideoOperations() {
     addVideoToWatchLaterVideos,
     deleteVideoFromWatchLaterVideos,
     inWatchLater,
+    resetFunction,
   };
 }
 
