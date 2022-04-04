@@ -11,21 +11,21 @@ function Videos() {
   const [searchedVideos, setSearchedVideos] = useState([]);
 
   const getSearchedVideos = () => {
-    let filteredVideos = [];
     // To get the string after = in URL
     const query = decodeURIComponent(search.split("=")[1]);
-    filteredVideos = state.videos.filter(
+    const filteredVideos = state.videos.filter(
       (video) =>
         video.title.toLowerCase().includes(query.toLowerCase()) ||
         video.category.toLowerCase().includes(query.toLowerCase())
     );
     setSearchedVideos(filteredVideos);
+    dispatch({ type: "SET_SEARCH_TEXT", payload: { searchText: query } });
     setSearchBarText("");
   };
 
   useEffect(() => {
     if (search.length > 0) getSearchedVideos();
-  }, [search]);
+  }, [search, searchedVideos]);
 
   const dispatchHandler = (category) => {
     dispatch({ type: "CATEGORY", payload: { category } });

@@ -1,5 +1,6 @@
 import { useAuth, useData } from "contexts";
 import { useNavigate } from "react-router-dom";
+
 import {
   getAllPlaylistsFromServer,
   postLoginData,
@@ -10,8 +11,8 @@ import {
 
 function useLoginHandler() {
   const { setAuthToken, setAuthUser } = useAuth();
-  const navigate = useNavigate();
   const { dispatch } = useData();
+  const navigate = useNavigate();
   const loginHandler = async (e, setLoginData, setErrorData, loginData) => {
     if (e) e.preventDefault();
     try {
@@ -54,7 +55,7 @@ function useLoginHandler() {
         type: "SET_WATCH_LATER",
         payload: { watchLater: response.watchlater },
       });
-      navigate(-1);
+      navigate("/videos");
     } catch (e) {
       setErrorData(true);
     }

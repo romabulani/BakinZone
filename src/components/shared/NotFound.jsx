@@ -3,8 +3,11 @@ import { Link } from "react-router-dom";
 function NotFound() {
   return (
     <div className="flex-column-center middle-content">
-      <p className="large-font-size">We couldn't find any matches!</p>
-      <p>Please try searching something else.</p>
+      <img
+        className="img-responsive"
+        src="https://res.cloudinary.com/dtrjdcrme/image/upload/v1649009736/ecommerce/404Image_s8lokh.webp"
+      />
+      <p className="large-font-size heading4">We couldn't find any matches!</p>
       <div className="flex-row-center">
         <Link
           to="/"
