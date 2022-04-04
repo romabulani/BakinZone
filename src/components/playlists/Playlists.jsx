@@ -1,5 +1,5 @@
 import { useData } from "contexts";
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./playlists.css";
 import { usePlaylistOperations } from "hooks";
@@ -10,12 +10,11 @@ import { Sidebar } from "components";
 function Playlists() {
   const { state } = useData();
   const { deletePlaylist } = usePlaylistOperations();
+  const [disable, setDsiable] = useState(false);
   const getThumbnail = (playlist) =>
     playlist.videos.length === 0
       ? "https://i.ytimg.com/img/no_thumbnail.jpg"
       : `https://i.ytimg.com/vi/${playlist.videos[0]._id}/0.jpg`;
-
-  const onClickDeleteHandler = (e, playlistId) => deletePlaylist(e, playlistId);
 
   return (
     <div className="middle-content">
@@ -52,7 +51,10 @@ function Playlists() {
                   <div className="title-and-options playlist-title">
                     <span className="large-font-size">{playlist.name}</span>
                     <button
-                      onClick={(e) => onClickDeleteHandler(e, playlist._id)}
+                      onClick={(e) =>
+                        deletePlaylist(e, playlist._id, setDsiable)
+                      }
+                      disabled={disable}
                       className="btn-no-decoration"
                     >
                       <FontAwesomeIcon icon="trash" />

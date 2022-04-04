@@ -5,7 +5,7 @@ const getVideos = async () => {
     if (response.status === 200) return response.data;
     else throw new Error();
   } catch (e) {
-    console.log("getVideos : Error in fetching videos", e);
+    console.error("getVideos : Error in fetching videos", e);
   }
 };
 
@@ -15,7 +15,7 @@ const getCategories = async () => {
     if (response.status === 200) return response.data;
     else throw new Error();
   } catch (e) {
-    console.log("getCategories : Error in fetching categories", e);
+    console.error("getCategories : Error in fetching categories", e);
   }
 };
 

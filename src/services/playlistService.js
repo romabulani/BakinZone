@@ -9,7 +9,7 @@ const getAllPlaylistsFromServer = async (authorization) => {
     if (response.status === 200) return response.data;
     else throw new Error();
   } catch (e) {
-    console.log(
+    console.error(
       "getAllPlaylistsFromServer : Error in fetching playlist details",
       e
     );
@@ -31,7 +31,7 @@ const addPlaylistToServer = async (authorization, playlist) => {
     } else throw new Error();
   } catch (e) {
     toast.error(`Couldn't add Playlist! Try again.`);
-    console.log("addPlaylistToServer : Error in adding playlist", e);
+    console.error("addPlaylistToServer : Error in adding playlist", e);
   }
 };
 
@@ -50,7 +50,7 @@ const addVideoToPlaylistInServer = async (authorization, playlistId, video) => {
     } else throw new Error();
   } catch (e) {
     toast.error(`Couldn't add video in playlist! Try again.`);
-    console.log(
+    console.error(
       "addVideoToPlaylistInServer : Error in adding video to playlist",
       e
     );
@@ -75,7 +75,7 @@ const removeVideoFromPlaylistInServer = async (
     } else throw new Error();
   } catch (e) {
     toast.error(`Couldn't remove video from playlist! Try again.`);
-    console.log(
+    console.error(
       "removeVideoToPlaylistFromServer : Error in removing video from playlist",
       e
     );
@@ -93,7 +93,7 @@ const deletePlaylistInServer = async (authorization, playlistId) => {
     } else throw new Error();
   } catch (e) {
     toast.error(`Couldn't delete playlist! Try again.`);
-    console.log("deletePlaylist : Error in deleting playlist", e);
+    console.error("deletePlaylist : Error in deleting playlist", e);
   }
 };
 

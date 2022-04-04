@@ -54,7 +54,7 @@ function useLoginHandler() {
         type: "SET_WATCH_LATER",
         payload: { watchLater: response.watchlater },
       });
-      navigate("/videos");
+      navigate(-1);
     } catch (e) {
       setErrorData(true);
     }

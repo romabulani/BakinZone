@@ -13,7 +13,7 @@ const postLoginData = async (email, password) => {
     } else throw new Error();
   } catch (e) {
     toast.error(`Couldn't Login! Please try again.`);
-    console.log("postLoginData: Error in Login", e);
+    console.error("postLoginData: Error in Login", e);
   }
 };
 
@@ -26,7 +26,7 @@ const postSignupData = async (formData) => {
     } else throw new Error();
   } catch (e) {
     toast.error(`Couldn't Signup! Please try again.`);
-    console.log("signUpHandler : Error in signing up", e);
+    console.error("signUpHandler : Error in signing up", e);
   }
 };
 

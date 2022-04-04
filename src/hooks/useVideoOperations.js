@@ -14,7 +14,7 @@ import {
 } from "services";
 
 function useVideoOperations() {
-  const { setAuthToken, setAuthUser } = useAuth();
+  const { authToken, setAuthToken, setAuthUser } = useAuth();
   const { state, dispatch, setPlaylistModal } = useData();
   const navigate = useNavigate();
 
@@ -87,8 +87,9 @@ function useVideoOperations() {
         type: "SET_LIKED_VIDEOS",
         payload: { likes: response.likes },
       });
-    } finally {
+    } catch (e) {
       resetFunction();
+    } finally {
       setDisable(false);
     }
   };

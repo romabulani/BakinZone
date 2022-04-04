@@ -102,18 +102,23 @@ function usePlaylistOperations() {
       });
     } catch (e) {
       resetFunction();
-    } finally {
       setDisable(false);
     }
   };
 
-  const deletePlaylist = async (e, playlistId) => {
+  const deletePlaylist = async (e, playlistId, setDisable) => {
     e.preventDefault();
-    const response = await deletePlaylistInServer(authToken, playlistId);
-    dispatch({
-      type: "SET_PLAYLISTS",
-      payload: { playlists: response.playlists },
-    });
+    setDisable(true);
+    try {
+      const response = await deletePlaylistInServer(authToken, playlistId);
+      dispatch({
+        type: "SET_PLAYLISTS",
+        payload: { playlists: response.playlists },
+      });
+    } catch (e) {
+      resetFunction();
+      setDisable(false);
+    }
   };
 
   return {

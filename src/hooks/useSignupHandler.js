@@ -147,7 +147,7 @@ function useSignupHandler() {
         });
       }
     } catch (e) {
-      console.log("signUpHandler : Couldn't signup", e);
+      console.error("signUpHandler : Couldn't signup", e);
     }
   };
 
