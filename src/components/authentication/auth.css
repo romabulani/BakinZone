@@ -100,6 +100,30 @@ span {
   color: var(--text-color);
 }
 
+.input-icon-style {
+  color: var(--default-color);
+  font-size: 1rem;
+  position: absolute;
+  right: 5px;
+  top: 6px;
+}
+
+.input-icon-container {
+  position: relative;
+}
+
+.input-no-outline {
+  outline: none;
+  border: none;
+  font-size: 13px;
+  position: absolute;
+  bottom: 7px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+}
+
 @media only screen and (max-width: 640px) {
   .auth-container,
   .logout-container {

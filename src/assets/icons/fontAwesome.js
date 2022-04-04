@@ -16,6 +16,8 @@ import {
   faTrash,
   faShareAlt,
   faPen,
+  faEye,
+  faEyeSlash,
 } from "@fortawesome/free-solid-svg-icons";
 library.add(
   fab,
@@ -33,7 +35,9 @@ library.add(
   faPlus,
   faTrash,
   faShareAlt,
-  faPen
+  faPen,
+  faEye,
+  faEyeSlash
 );
 
 export { library };
