@@ -1,8 +1,8 @@
+import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./nav.css";
-import { useEffect } from "react";
 import { Sidebar } from "components";
+import "./nav.css";
 
 function MobileProfile() {
   const navigate = useNavigate();

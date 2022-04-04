@@ -1,14 +1,14 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ReactPlayer from "react-player/youtube";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./video.css";
-import { useAuth, useData } from "contexts";
-import { faClock, faThumbsUp } from "@fortawesome/free-regular-svg-icons";
-import { RiPlayListAddFill } from "react-icons/ri";
-import { useVideoOperations } from "hooks";
-import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { RiPlayListAddFill } from "react-icons/ri";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClock, faThumbsUp } from "@fortawesome/free-regular-svg-icons";
+import { useAuth, useData } from "contexts";
+import { useVideoOperations } from "hooks";
 import { Sidebar } from "components";
+import "./video.css";
 
 function Video() {
   const params = useParams();

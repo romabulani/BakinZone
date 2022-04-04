@@ -1,8 +1,8 @@
-import "components/playlists/playlists.css";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { usePlaylistOperations, useVideoOperations } from "hooks";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import "components/playlists/playlists.css";
 
 function CommonVideoCard({ video, playlistCategory }) {
   const { removeVideoFromPlaylist } = usePlaylistOperations();

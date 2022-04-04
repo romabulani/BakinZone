@@ -1,8 +1,8 @@
-import "./nav.css";
-import logo from "assets/images/logo.png";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useAuth, useData } from "contexts";
+import logo from "assets/images/logo.png";
+import "./nav.css";
 
 function Navigation() {
   const navigate = useNavigate();

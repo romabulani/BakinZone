@@ -1,9 +1,9 @@
-import { useData } from "contexts";
-import "./videos.css";
-import { VideoCard } from "./VideoCard";
-import { Link, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Sidebar } from "components";
+import { useData } from "contexts";
+import { VideoCard } from "./VideoCard";
+import "./videos.css";
 
 function Videos() {
   const { state, dispatch, setSearchBarText } = useData();

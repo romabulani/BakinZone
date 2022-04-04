@@ -1,3 +1,6 @@
+import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 import {
   Footer,
   HeroSection,
@@ -19,9 +22,6 @@ import {
   Videos,
   WatchLater,
 } from "components";
-import { Route, Routes } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.min.css";
 import "./App.css";
 
 function App() {

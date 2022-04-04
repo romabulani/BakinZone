@@ -1,8 +1,8 @@
-import "./auth.css";
 import { Link } from "react-router-dom";
-import { useSignupHandler } from "hooks";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useSignupHandler } from "hooks";
 import { Sidebar } from "components";
+import "./auth.css";
 
 function SignupForm() {
   const { formData, formDispatch, errorData, errorDispatch, signUpHandler } =

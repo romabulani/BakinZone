@@ -140,7 +140,7 @@ function PlaylistModal() {
                 className={`btn btn-primary btn-dark-theme ${
                   playlistName === "" ? "disabled-cursor" : ""
                 }`}
-                disabled={playlistName === "" || !setDisableCreate}
+                disabled={playlistName === "" || disableCreate}
               >
                 Create
               </button>

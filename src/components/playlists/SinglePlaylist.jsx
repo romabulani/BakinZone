@@ -1,6 +1,6 @@
+import { Link, useParams } from "react-router-dom";
 import { CommonVideoCard, Sidebar } from "components";
 import { useData } from "contexts";
-import { Link, useParams } from "react-router-dom";
 
 function SinglePlaylist() {
   const params = useParams();

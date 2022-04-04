@@ -1,11 +1,11 @@
-import { useData } from "contexts";
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./playlists.css";
-import { usePlaylistOperations } from "hooks";
 import { Link } from "react-router-dom";
 import { RiPlayListAddFill } from "react-icons/ri";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { usePlaylistOperations } from "hooks";
+import { useData } from "contexts";
 import { Sidebar } from "components";
+import "./playlists.css";
 
 function Playlists() {
   const { state } = useData();

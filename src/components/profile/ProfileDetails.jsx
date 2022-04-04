@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "contexts";
-import "./profile.css";
 import { toast } from "react-toastify";
+import { useAuth } from "contexts";
 import { Sidebar } from "components";
+import "./profile.css";
 
 function ProfileDetails() {
   const { setAuthToken, authUser, setAuthUser } = useAuth();

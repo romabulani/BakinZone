@@ -1,6 +1,6 @@
+import { Link } from "react-router-dom";
 import { CommonVideoCard, Sidebar } from "components";
 import { useData } from "contexts";
-import { Link } from "react-router-dom";
 
 function LikedVideos() {
   const { state } = useData();

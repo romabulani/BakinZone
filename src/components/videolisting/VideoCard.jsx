@@ -1,8 +1,8 @@
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useData } from "contexts";
 import "./videos.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Link, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
 
 function VideoCard({ video }) {
   const { setPlaylistModal, setCurrentVideo } = useData();

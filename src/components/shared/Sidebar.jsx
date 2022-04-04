@@ -1,7 +1,7 @@
-import "./nav.css";
 import { NavLink, Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { RiPlayListAddFill } from "react-icons/ri";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./nav.css";
 
 function Sidebar() {
   return (

@@ -1,8 +1,8 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { CommonVideoCard, Sidebar } from "components";
 import { useData } from "contexts";
 import { useVideoOperations } from "hooks";
-import { useState } from "react";
-import { Link } from "react-router-dom";
 
 function History() {
   const { state } = useData();
