@@ -75,8 +75,7 @@
 .sidebar-item {
   color: var(--text-color);
   font-size: 1rem;
-  padding-left: 2.5rem;
-  padding: 1rem 1.5rem;
+  padding: 1rem 1.5rem 1rem 2.5em;
   text-decoration: none;
 }
 

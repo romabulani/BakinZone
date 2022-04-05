@@ -35,6 +35,11 @@ export const reducer = (state, action) => {
         ...state,
         watchLater: action.payload.watchLater,
       };
+    case "SET_NOTES":
+      return {
+        ...state,
+        notes: action.payload.notes,
+      };
     default:
       return state;
   }

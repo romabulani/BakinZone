@@ -16,6 +16,7 @@ const initialState = {
   history: [],
   likes: [],
   watchLater: [],
+  notes: [],
 };
 
 const DataContext = createContext();
