@@ -8,24 +8,25 @@ import "./videos.css";
 function Videos() {
   const { state, dispatch, setSearchBarText } = useData();
   const { search } = useLocation();
-  const [searchedVideos, setSearchedVideos] = useState([]);
+  const [query, setQuery] = useState("");
 
   const getSearchedVideos = () => {
-    // To get the string after = in URL
-    const query = decodeURIComponent(search.split("=")[1]);
     const filteredVideos = state.videos.filter(
       (video) =>
         video.title.toLowerCase().includes(query.toLowerCase()) ||
         video.category.toLowerCase().includes(query.toLowerCase())
     );
-    setSearchedVideos(filteredVideos);
-    dispatch({ type: "SET_SEARCH_TEXT", payload: { searchText: query } });
-    setSearchBarText("");
+
+    return filteredVideos;
   };
 
   useEffect(() => {
-    if (search.length > 0) getSearchedVideos();
-  }, [search, searchedVideos]);
+    if (search.length > 0) {
+      // To get the string after = in URL
+      setQuery(decodeURIComponent(search.split("=")[1]));
+      setSearchBarText("");
+    }
+  }, [search]);
 
   const dispatchHandler = (category) => {
     dispatch({ type: "CATEGORY", payload: { category } });
@@ -72,16 +73,18 @@ function Videos() {
         </div>
       )}
 
-      {search && searchedVideos.length > 0 && (
+      {search && getSearchedVideos().length > 0 && (
         <div className="flex-column">
           <div className="flex-column-center search-header">
             <div>
-              {`Search Results for "${state.searchText}" - ${searchedVideos.length} videos`}
+              {`Search Results for "${query}" - ${
+                getSearchedVideos().length
+              } videos`}
             </div>
           </div>
           <div className="flex-row-center">
             <div className="videos-container">
-              {searchedVideos.map((video) => (
+              {getSearchedVideos().map((video) => (
                 <VideoCard video={video} key={video._id}></VideoCard>
               ))}
             </div>
@@ -89,10 +92,10 @@ function Videos() {
         </div>
       )}
 
-      {search && searchedVideos.length === 0 && (
+      {search && getSearchedVideos().length === 0 && (
         <div className="flex-row-center">
           <div className="margin-container flex-column-center padding-top-8">
-            {`No Search Results found for "${state.searchText}"`}
+            {`No Search Results found for "${query}"`}
             <Link
               className="btn btn-primary no-link-decoration inline-flex-center"
               to="/videos"

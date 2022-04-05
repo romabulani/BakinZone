@@ -35,11 +35,6 @@ export const reducer = (state, action) => {
         ...state,
         watchLater: action.payload.watchLater,
       };
-    case "SET_SEARCH_TEXT":
-      return {
-        ...state,
-        searchText: action.payload.searchText,
-      };
     default:
       return state;
   }
