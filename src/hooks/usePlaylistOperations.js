@@ -16,11 +16,15 @@ function usePlaylistOperations() {
   const { resetFunction } = useVideoOperations();
 
   const getAllPlaylists = async () => {
-    const response = await getAllPlaylistsFromServer(authToken);
-    dispatch({
-      type: "SET_PLAYLISTS",
-      payload: { playlists: response.playlists },
-    });
+    try {
+      const response = await getAllPlaylistsFromServer(authToken);
+      dispatch({
+        type: "SET_PLAYLISTS",
+        payload: { playlists: response.playlists },
+      });
+    } catch (e) {
+      resetFunction();
+    }
   };
 
   const addPlaylist = async (name, setDisable) => {

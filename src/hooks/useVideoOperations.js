@@ -28,19 +28,27 @@ function useVideoOperations() {
   }
 
   const getAllVideosInHistory = async () => {
-    const response = await getAllVideosInHistoryFromServer(authToken);
-    dispatch({
-      type: "SET_HISTORY",
-      payload: { history: response.history },
-    });
+    try {
+      const response = await getAllVideosInHistoryFromServer(authToken);
+      dispatch({
+        type: "SET_HISTORY",
+        payload: { history: response.history },
+      });
+    } catch (e) {
+      resetFunction();
+    }
   };
 
   const addVideoToHistory = async (video) => {
-    const response = await addVideoToHistoryInServer(authToken, video);
-    dispatch({
-      type: "SET_HISTORY",
-      payload: { history: response.history },
-    });
+    try {
+      const response = await addVideoToHistoryInServer(authToken, video);
+      dispatch({
+        type: "SET_HISTORY",
+        payload: { history: response.history },
+      });
+    } catch (e) {
+      resetFunction();
+    }
   };
 
   const deleteVideoFromHistory = async (e, videoId, setDisable) => {
@@ -66,17 +74,23 @@ function useVideoOperations() {
         type: "SET_HISTORY",
         payload: { history: response.history },
       });
+    } catch (e) {
+      resetFunction();
     } finally {
       setDisable(false);
     }
   };
 
   const getAllLikedVideos = async () => {
-    const response = await getAllLikedVideosFromServer(authToken);
-    dispatch({
-      type: "SET_LIKED_VIDEOS",
-      payload: { likes: response.likes },
-    });
+    try {
+      const response = await getAllLikedVideosFromServer(authToken);
+      dispatch({
+        type: "SET_LIKED_VIDEOS",
+        payload: { likes: response.likes },
+      });
+    } catch (e) {
+      resetFunction();
+    }
   };
 
   const addVideoToLikedVideos = async (video, setDisable) => {
@@ -116,11 +130,15 @@ function useVideoOperations() {
     state.likes.find((video) => video._id === videoId);
 
   const getWatchLaterVideos = async () => {
-    const response = await getWatchLaterVideosFromServer(authToken);
-    dispatch({
-      type: "SET_WATCH_LATER",
-      payload: { watchLater: response.watchlater },
-    });
+    try {
+      const response = await getWatchLaterVideosFromServer(authToken);
+      dispatch({
+        type: "SET_WATCH_LATER",
+        payload: { watchLater: response.watchlater },
+      });
+    } catch (e) {
+      resetFunction();
+    }
   };
 
   const addVideoToWatchLaterVideos = async (e, video, setDisable) => {
