@@ -10,15 +10,12 @@ function Videos() {
   const { search } = useLocation();
   const [query, setQuery] = useState("");
 
-  const getSearchedVideos = () => {
-    const filteredVideos = state.videos.filter(
+  const getSearchedVideos = () =>
+    state.videos.filter(
       (video) =>
         video.title.toLowerCase().includes(query.toLowerCase()) ||
         video.category.toLowerCase().includes(query.toLowerCase())
     );
-
-    return filteredVideos;
-  };
 
   useEffect(() => {
     if (search.length > 0) {
