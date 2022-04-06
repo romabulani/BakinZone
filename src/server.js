@@ -38,7 +38,7 @@ import {
   removeVideoFromPlaylistHandler,
 } from "./backend/controllers/PlaylistController";
 import {
-  getNotesForVideoHandler,
+  getNotesHandler,
   addNewNoteHandler,
   deleteNoteHandler,
   updateNoteHandler,
@@ -141,9 +141,9 @@ export function makeServer({ environment = "development" } = {}) {
       );
 
       //notes route(private)
-      this.get("/user/notes/:videoId", getNotesForVideoHandler.bind(this));
+      this.get("/user/notes", getNotesHandler.bind(this));
       this.post("/user/notes", addNewNoteHandler.bind(this));
-      this.delete("/user/notes/noteId", deleteNoteHandler.bind(this));
+      this.delete("/user/notes/:noteId", deleteNoteHandler.bind(this));
       this.post("/user/notes/:noteId", updateNoteHandler.bind(this));
     },
   });

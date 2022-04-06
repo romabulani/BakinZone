@@ -54,12 +54,10 @@ export const deleteNoteHandler = function (schema, request) {
  * send GET Request at /api/user/notes/:videoId
  * */
 
-export const getNotesForVideoHandler = function (schema, request) {
+export const getNotesHandler = function (schema, request) {
   const user = requiresAuth.call(this, request);
   if (user) {
-    const videoId = request.params.videoId;
-    const note = user.notes.find((item) => item._id !== videoId);
-    return new Response(200, {}, { note });
+    return new Response(200, {}, { notes: user.notes });
   }
   return new Response(
     404,
@@ -75,9 +73,9 @@ export const getNotesForVideoHandler = function (schema, request) {
 
 export const updateNoteHandler = function (schema, request) {
   const noteId = request.params.noteId;
-  const userId = requiresAuth.call(this, request);
+  const user = requiresAuth.call(this, request);
   try {
-    if (!userId) {
+    if (!user) {
       new Response(
         404,
         {},
@@ -89,7 +87,6 @@ export const updateNoteHandler = function (schema, request) {
     const { note } = JSON.parse(request.requestBody);
     const noteIndex = user.notes.findIndex((note) => note._id === noteId);
     user.notes[noteIndex] = { ...user.notes[noteIndex], ...note };
-
     return new Response(201, {}, { notes: user.notes });
   } catch (error) {
     return new Response(
