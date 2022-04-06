@@ -69,28 +69,38 @@ function Sidebar() {
           <FontAwesomeIcon icon="clock" className="sidebar-icon" />
           <span>Watch Later</span>
         </NavLink>
+
+        <NavLink
+          to="/uploadvideo"
+          className={({ isActive }) =>
+            isActive ? "sidebar-item sidebar-active" : "sidebar-item"
+          }
+        >
+          <FontAwesomeIcon icon="upload" className="sidebar-icon" />
+          <span>Upload Video</span>
+        </NavLink>
       </aside>
       <div className="mobile-bottom-nav">
-        <Link to="/" className="mobile-nav-item">
-          <div className="mobile-nav-item">
-            <FontAwesomeIcon icon="home" className="bottom-icon" />
-            <span>Home</span>
-          </div>
-        </Link>
-
         <Link to="/videos" className="mobile-nav-item">
           <div className="mobile-nav-item">
             <FontAwesomeIcon icon="compass" className="bottom-icon" />
             <span>Explore</span>
           </div>
         </Link>
-
         <Link to="/playlists" className="mobile-nav-item">
           <div className="mobile-nav-item">
             <div className="icon-chip">
               <RiPlayListAddFill />
             </div>
             <span>Playlists</span>
+          </div>
+        </Link>
+        <Link to="/uploadvideo" className="mobile-nav-item">
+          <div className="mobile-nav-item">
+            <div className="mobile-nav-item">
+              <FontAwesomeIcon icon="upload" className="bottom-icon" />
+              <span>Upload Video</span>
+            </div>
           </div>
         </Link>
         <Link to="/profile" className="mobile-nav-item">

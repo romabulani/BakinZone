@@ -17,6 +17,7 @@ const initialState = {
   likes: [],
   watchLater: [],
   notes: [],
+  uploadedVideos: [],
 };
 
 const DataContext = createContext();
