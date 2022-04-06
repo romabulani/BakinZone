@@ -40,6 +40,11 @@ export const reducer = (state, action) => {
         ...state,
         notes: action.payload.notes,
       };
+    case "SET_UPLOADED_VIDEOS":
+      return {
+        ...state,
+        uploadedVideos: action.payload.uploadedVideos,
+      };
     default:
       return state;
   }

@@ -18,6 +18,7 @@ import {
   ScrollToTop,
   SignupForm,
   SinglePlaylist,
+  UploadVideo,
   Video,
   Videos,
   WatchLater,
@@ -91,6 +92,14 @@ function App() {
           element={
             <PrivateRoute>
               <MobileProfile />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/uploadvideo"
+          element={
+            <PrivateRoute>
+              <UploadVideo />
             </PrivateRoute>
           }
         />

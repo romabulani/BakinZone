@@ -19,3 +19,4 @@ export { WatchLater } from "./watchlater/WatchLater";
 export { HeroSection } from "./landingpage/HeroSection";
 export { MobileProfile } from "./shared/MobileProfile";
 export { NotFound } from "./shared/NotFound";
+export { UploadVideo } from "./uploadvideo/UploadVideo";

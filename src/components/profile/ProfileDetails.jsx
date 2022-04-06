@@ -21,6 +21,11 @@ function ProfileDetails() {
     setAuthToken("");
     setAuthUser(null);
     dispatch({ type: "SET_NOTES", payload: { notes: [] } });
+    dispatch({ type: "SET_PLAYLISTS", payload: { playlists: [] } });
+    dispatch({ type: "SET_LIKED_VIDEOS", payload: { likes: [] } });
+    dispatch({ type: "SET_WATCH_LATER", payload: { watchLater: [] } });
+    dispatch({ type: "SET_HISTORY", payload: { history: [] } });
+    dispatch({ type: "SET_UPLOADED_VIDEOS", payload: { uploadedVideos: [] } });
     navigate("/videos");
   }
 

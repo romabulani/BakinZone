@@ -41,14 +41,19 @@ function useVideoOperations() {
   };
 
   const addVideoToHistory = async (video) => {
-    try {
-      const response = await addVideoToHistoryInServer(authToken, video);
-      dispatch({
-        type: "SET_HISTORY",
-        payload: { history: response.history },
-      });
-    } catch (e) {
-      resetFunction();
+    const inHistory = state.history.filter(
+      (eachVideo) => eachVideo._id === video._id
+    );
+    if (inHistory.length === 0) {
+      try {
+        const response = await addVideoToHistoryInServer(authToken, video);
+        dispatch({
+          type: "SET_HISTORY",
+          payload: { history: response.history },
+        });
+      } catch (e) {
+        resetFunction();
+      }
     }
   };
 
@@ -69,6 +74,7 @@ function useVideoOperations() {
 
   const deleteAllVideosFromHistory = async (setDisable) => {
     setDisable(true);
+
     try {
       const response = await deleteAllVideosFromHistoryInServer(authToken);
       dispatch({
@@ -160,9 +166,8 @@ function useVideoOperations() {
     }
   };
 
-  const deleteVideoFromWatchLaterVideos = async (e, videoId, setDisable) => {
+  const deleteVideoFromWatchLaterVideos = async (e, videoId) => {
     e.preventDefault();
-    setDisable(true);
     try {
       const response = await deleteVideoFromWatchLaterVideosInServer(
         authToken,
@@ -173,13 +178,16 @@ function useVideoOperations() {
         payload: { watchLater: response.watchlater },
       });
     } catch (e) {
-      setDisable(false);
       resetFunction();
     }
   };
 
-  const inWatchLater = (videoId) =>
-    state.watchLater.find((video) => video._id === videoId);
+  const inWatchLater = (videoId) => {
+    const filteredVideos = state.watchLater.filter(
+      (video) => video._id === videoId
+    );
+    return !(filteredVideos.length === 0);
+  };
 
   return {
     getAllVideosInHistory,

@@ -65,35 +65,6 @@ function PlaylistModal() {
       <div className="playlist-modal">
         <div className="flex-row-spacebetween">
           <div className="playlist playlist-header">
-            {watchLaterOption &&
-              (inWatchLater(currentVideo._id) ? (
-                <div
-                  className="watch-later delete-icon"
-                  onClick={(e) =>
-                    deleteVideoFromWatchLaterVideos(e, currentVideo._id)
-                  }
-                >
-                  <FontAwesomeIcon icon="trash" className="p-right-5" />
-                  <span className="p-left-5 delete-icon">
-                    Remove from Watch Later
-                  </span>
-                </div>
-              ) : (
-                <div
-                  className="watch-later"
-                  onClick={(e) =>
-                    !disableWatchLater &&
-                    addVideoToWatchLaterVideos(
-                      e,
-                      currentVideo,
-                      setDisableWatchLater
-                    )
-                  }
-                >
-                  <FontAwesomeIcon icon="clock" className="p-right-5" />
-                  <span className="p-left-5">Add to Watch Later</span>
-                </div>
-              ))}
             <div>Save to...</div>
           </div>
           <FontAwesomeIcon
@@ -107,6 +78,29 @@ function PlaylistModal() {
         </div>
 
         <div className="playlists-container">
+          {watchLaterOption && (
+            <>
+              <input
+                type="checkbox"
+                id="watchLater"
+                checked={inWatchLater(currentVideo._id)}
+                className="p-right-5"
+                onChange={(e) =>
+                  inWatchLater(currentVideo._id)
+                    ? deleteVideoFromWatchLaterVideos(e, currentVideo._id)
+                    : addVideoToWatchLaterVideos(
+                        e,
+                        currentVideo,
+                        setDisableWatchLater
+                      )
+                }
+              />
+              <label htmlFor="watchLater" className="checkbox-label">
+                Watch Later
+              </label>
+            </>
+          )}
+
           {state.playlists.map((playlist) => (
             <div key={playlist._id} className="playlist">
               <input

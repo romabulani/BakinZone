@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Sidebar } from "components";
 import { useLoginHandler } from "hooks";
@@ -10,6 +10,8 @@ function LoginForm() {
   const [errorData, setErrorData] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const { loginHandler } = useLoginHandler();
+  const location = useLocation();
+
   return (
     <div className="middle-content">
       <Sidebar />
@@ -71,14 +73,16 @@ function LoginForm() {
           <button
             className="btn btn-primary btn-auth"
             onClick={(e) =>
-              loginHandler(e, setLoginData, setErrorData, loginData)
+              loginHandler(e, setLoginData, setErrorData, loginData, location)
             }
           >
             Login
           </button>
           <button
             className="btn btn-outline-primary btn-auth guest-button"
-            onClick={(e) => loginHandler(e, setLoginData, setErrorData)}
+            onClick={(e) => {
+              loginHandler(e, setLoginData, setErrorData, null, location);
+            }}
           >
             Login as Guest
           </button>
@@ -94,7 +98,11 @@ function LoginForm() {
           )}
           <div>
             <span>Don't have an account?</span>
-            <Link to="/signup" className="btn-link btn-link-primary">
+            <Link
+              to="/signup"
+              className="btn-link btn-link-primary"
+              state={location.state}
+            >
               Create One
             </Link>
           </div>

@@ -15,7 +15,7 @@ import { useVideoOperations } from "hooks";
 
 function Video() {
   const params = useParams();
-  const { state, setPlaylistModal, setCurrentVideo } = useData();
+  const { state, setPlaylistModal, setCurrentVideo, dispatch } = useData();
   const [disableLike, setDisableLike] = useState(false);
   const [disableWatchLater, setDisableWatchLater] = useState(false);
 
@@ -41,18 +41,31 @@ function Video() {
     .sort((a, b) => b.playingTime - a.playingTime);
 
   const likeHandler = (e, video) =>
-    isLiked(video._id)
-      ? deleteVideoFromLikedVideos(e, video._id, setDisableLike)
-      : addVideoToLikedVideos(video, setDisableLike);
+    authToken
+      ? isLiked(video._id)
+        ? deleteVideoFromLikedVideos(e, video._id, setDisableLike)
+        : addVideoToLikedVideos(video, setDisableLike)
+      : toast.info("Please login to continue");
 
   const watchLaterHandler = (e, video) =>
-    inWatchLater(video._id)
-      ? deleteVideoFromWatchLaterVideos(e, video._id, setDisableWatchLater)
-      : addVideoToWatchLaterVideos(e, video, setDisableWatchLater);
+    authToken
+      ? inWatchLater(video._id)
+        ? deleteVideoFromWatchLaterVideos(e, video._id, setDisableWatchLater)
+        : addVideoToWatchLaterVideos(e, video, setDisableWatchLater)
+      : toast.info("Please login to continue");
 
   const copyHandler = () => {
     navigator.clipboard.writeText(window.location.href);
     toast.info("Link Copied");
+  };
+
+  const increaseViewCount = (video) => {
+    const updatedVideoList = state.videos.map((eachVideo) =>
+      eachVideo._id === video._id
+        ? { ...eachVideo, viewCount: eachVideo.viewCount + 1 }
+        : eachVideo
+    );
+    dispatch({ type: "SET_VIDEOS", payload: { videos: updatedVideoList } });
   };
 
   return (
@@ -69,12 +82,14 @@ function Video() {
                 height="100%"
                 onStart={() => {
                   if (authToken) addVideoToHistory(video);
+                  increaseViewCount(video);
                 }}
                 ref={videoRef}
               />
             </div>
             <div className="video-details">
               <div className="keyword hashtag">{`#${video.category}`}</div>
+              <div className="video-title">View Count : {video.viewCount}</div>
               <div className="video-title">{video.title}</div>
               <div className="video-buttons">
                 <span

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { usePlaylistOperations, useVideoOperations } from "hooks";
 import "components/playlists/playlists.css";
 
-function CommonVideoCard({ video, playlistCategory }) {
+function CommonVideoCard({ video, playlistCategory, uploaded }) {
   const { removeVideoFromPlaylist } = usePlaylistOperations();
   const [disable, setDisable] = useState(false);
 
@@ -41,16 +41,18 @@ function CommonVideoCard({ video, playlistCategory }) {
       </Link>
       <div className="title-and-options playlist-title">
         <span>{video.title}</span>
-        <button
-          onClick={(e) => onClickDeleteHandler(e)}
-          className="btn-no-decoration error-color"
-          disabled={disable}
-        >
-          <FontAwesomeIcon
-            icon="trash"
-            className="delete-icon large-font-size"
-          />
-        </button>
+        {!uploaded && (
+          <button
+            onClick={(e) => onClickDeleteHandler(e)}
+            className="btn-no-decoration error-color"
+            disabled={disable}
+          >
+            <FontAwesomeIcon
+              icon="trash"
+              className="delete-icon large-font-size"
+            />
+          </button>
+        )}
       </div>
     </div>
   );
