@@ -73,7 +73,7 @@ function Video() {
                 ref={videoRef}
               />
             </div>
-            <div className="video-description">
+            <div className="video-details">
               <div className="keyword hashtag">{`#${video.category}`}</div>
               <div className="video-title">{video.title}</div>
               <div className="video-buttons">
@@ -122,6 +122,7 @@ function Video() {
                   Copy Link
                 </span>
               </div>
+              <div className="hashtag">{video.description}</div>
             </div>
           </div>
 
