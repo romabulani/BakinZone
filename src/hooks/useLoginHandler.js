@@ -7,6 +7,7 @@ import {
   getAllVideosInHistoryFromServer,
   getAllLikedVideosFromServer,
   getWatchLaterVideosFromServer,
+  getNotesFromServer,
 } from "services";
 
 function useLoginHandler() {
@@ -54,6 +55,11 @@ function useLoginHandler() {
       dispatch({
         type: "SET_WATCH_LATER",
         payload: { watchLater: response.watchlater },
+      });
+      response = await getNotesFromServer(tokenResponse);
+      dispatch({
+        type: "SET_NOTES",
+        payload: { notes: response.notes },
       });
       navigate("/videos");
     } catch (e) {

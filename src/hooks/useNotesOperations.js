@@ -1,7 +1,7 @@
 // This file contains all the Playlist operations
 import { useAuth, useData } from "contexts";
 import {
-  getNotesForVideoFromServer,
+  getNotesFromServer,
   addNewNoteInServer,
   deleteNoteFromServer,
   updateNoteInServer,
@@ -10,16 +10,13 @@ import { useVideoOperations } from "./useVideoOperations";
 
 function useNotesOperations() {
   const { authToken } = useAuth();
-  const { dispatch, state, currentVideo } = useData();
+  const { dispatch } = useData();
 
   const { resetFunction } = useVideoOperations();
 
-  const getNotesForVideo = async () => {
+  const getNotes = async () => {
     try {
-      const response = await getNotesForVideoFromServer(
-        authToken,
-        currentVideo._id
-      );
+      const response = await getNotesFromServer(authToken);
       dispatch({
         type: "SET_NOTES",
         payload: { notes: response.notes },
@@ -70,12 +67,11 @@ function useNotesOperations() {
       return response.data;
     } catch (e) {
       resetFunction();
-    } finally {
       setDisable(false);
     }
   };
   return {
-    getNotesForVideo,
+    getNotes,
     addNewNote,
     deleteNote,
     updateNote,

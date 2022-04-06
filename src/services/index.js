@@ -21,7 +21,7 @@ export {
 } from "./videoService";
 export {
   addNewNoteInServer,
-  getNotesForVideoFromServer,
+  getNotesFromServer,
   deleteNoteFromServer,
   updateNoteInServer,
 } from "./notesService";

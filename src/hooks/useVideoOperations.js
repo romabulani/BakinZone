@@ -23,6 +23,7 @@ function useVideoOperations() {
     localStorage.removeItem("authUser");
     setAuthToken("");
     setAuthUser(null);
+    dispatch({ type: "SET_NOTES", payload: { notes: [] } });
     setPlaylistModal(false);
     navigate("/login");
   }

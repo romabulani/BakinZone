@@ -1,18 +1,15 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const getNotesForVideoFromServer = async (authorization, videoId) => {
+const getNotesFromServer = async (authorization) => {
   try {
-    const response = await axios.get(`/api/user/notes/${videoId}`, {
+    const response = await axios.get(`/api/user/notes`, {
       headers: { authorization },
     });
     if (response.status === 200) return response.data;
     else throw new Error();
   } catch (e) {
-    console.error(
-      "getNotesForVideoFromServer : Error in fetching notes for the video",
-      e
-    );
+    console.error("getNotesFromServer : Error in fetching notes ", e);
   }
 };
 
@@ -52,7 +49,7 @@ const deleteNoteFromServer = async (authorization, noteId) => {
 
 const updateNoteInServer = async (authorization, note) => {
   try {
-    const response = await axios.delete(
+    const response = await axios.post(
       `/api/user/notes/${note._id}`,
       { note },
       {
@@ -71,7 +68,7 @@ const updateNoteInServer = async (authorization, note) => {
 
 export {
   addNewNoteInServer,
-  getNotesForVideoFromServer,
+  getNotesFromServer,
   deleteNoteFromServer,
   updateNoteInServer,
 };
