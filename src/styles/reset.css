@@ -6,7 +6,8 @@
   font-size: 16px;
 }
 
-body {
+body,
+option {
   color: var(--text-color);
   background-color: var(--bg-color);
   caret-color: var(--text-color);
