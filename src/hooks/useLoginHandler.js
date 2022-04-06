@@ -14,7 +14,13 @@ function useLoginHandler() {
   const { setAuthToken, setAuthUser } = useAuth();
   const { dispatch } = useData();
   const navigate = useNavigate();
-  const loginHandler = async (e, setLoginData, setErrorData, loginData) => {
+  const loginHandler = async (
+    e,
+    setLoginData,
+    setErrorData,
+    loginData,
+    location
+  ) => {
     if (e) e.preventDefault();
     try {
       let response;
@@ -61,7 +67,8 @@ function useLoginHandler() {
         type: "SET_NOTES",
         payload: { notes: response.notes },
       });
-      navigate("/videos");
+      if (location.state) navigate(location.state?.from?.pathname);
+      else navigate("/videos");
     } catch (e) {
       setErrorData(true);
     }
