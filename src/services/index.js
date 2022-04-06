@@ -19,3 +19,9 @@ export {
   addVideoToWatchLaterVideosInServer,
   deleteVideoFromWatchLaterVideosInServer,
 } from "./videoService";
+export {
+  addNewNoteInServer,
+  getNotesFromServer,
+  deleteNoteFromServer,
+  updateNoteInServer,
+} from "./notesService";

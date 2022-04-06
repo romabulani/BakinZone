@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import ReactPlayer from "react-player/youtube";
 import { toast } from "react-toastify";
@@ -6,15 +6,20 @@ import { RiPlayListAddFill } from "react-icons/ri";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faThumbsUp } from "@fortawesome/free-regular-svg-icons";
 import { useAuth, useData } from "contexts";
-import { useVideoOperations } from "hooks";
+
 import { Sidebar } from "components";
 import "./video.css";
+import { SingleNote } from "./SingleNote";
+import { EditNote } from "./EditNote";
+import { useVideoOperations } from "hooks";
 
 function Video() {
   const params = useParams();
   const { state, setPlaylistModal, setCurrentVideo } = useData();
   const [disableLike, setDisableLike] = useState(false);
   const [disableWatchLater, setDisableWatchLater] = useState(false);
+
+  const videoRef = useRef();
 
   const { authToken } = useAuth();
   const {
@@ -30,6 +35,11 @@ function Video() {
   const video = state.videos.find((video) => video._id === params.videoId);
 
   useEffect(() => setCurrentVideo(video), [video]);
+
+  const videoNotes = state.notes
+    .filter((note) => note.videoId === video._id)
+    .sort((a, b) => b.playingTime - a.playingTime);
+
   const likeHandler = (e, video) =>
     isLiked(video._id)
       ? deleteVideoFromLikedVideos(e, video._id, setDisableLike)
@@ -60,9 +70,10 @@ function Video() {
                 onStart={() => {
                   if (authToken) addVideoToHistory(video);
                 }}
+                ref={videoRef}
               />
             </div>
-            <div className="video-description">
+            <div className="video-details">
               <div className="keyword hashtag">{`#${video.category}`}</div>
               <div className="video-title">{video.title}</div>
               <div className="video-buttons">
@@ -111,45 +122,18 @@ function Video() {
                   Copy Link
                 </span>
               </div>
+              <div className="hashtag">{video.description}</div>
             </div>
           </div>
 
           <div className="add-note-container">
             <div>Notes</div>
-            <div>
-              <input
-                placeholder="Title.."
-                className="input-primary input-full-width"
-              />
-            </div>
-            <div>
-              <textarea
-                placeholder="Description.."
-                className="input-primary input-full-width input-height-8"
-              />
-            </div>
-            <div className="flex-row-justify-start add-note-btns">
-              <button className="btn btn-primary btn-fit-content">Save</button>
-              <button className="btn btn-outline-primary btn-fit-content">
-                Discard
-              </button>
-            </div>
+            <EditNote videoRef={videoRef} />
             <div className="added-notes-container">
-              <div className="added-note">
-                <p className="added-note-header">Lorem ipsum dolor sit</p>
-                <p className="added-note-description">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Repellat velit itaque eos consequuntur quos cum, nihil aliquid
-                  vero, veritatis, necessitatibus non nobis beatae perspiciatis.
-                </p>
-                <p>
-                  <FontAwesomeIcon icon="clock" />
-                </p>
-                <div className="flex-row-justify-start">
-                  <FontAwesomeIcon icon="pen" />
-                  <FontAwesomeIcon icon="trash" />
-                </div>
-              </div>
+              {videoNotes.map((note) => (
+                <SingleNote key={note._id} note={note} />
+              ))}
+              {videoNotes.length === 0 && <p>No notes added yet.</p>}
             </div>
           </div>
         </div>

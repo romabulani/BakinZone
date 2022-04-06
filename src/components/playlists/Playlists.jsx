@@ -10,7 +10,7 @@ import "./playlists.css";
 function Playlists() {
   const { state } = useData();
   const { deletePlaylist } = usePlaylistOperations();
-  const [disable, setDsiable] = useState(false);
+  const [disable, setDisable] = useState(false);
   const getThumbnail = (playlist) =>
     playlist.videos.length === 0
       ? "https://i.ytimg.com/img/no_thumbnail.jpg"
@@ -52,10 +52,10 @@ function Playlists() {
                     <span className="large-font-size">{playlist.name}</span>
                     <button
                       onClick={(e) =>
-                        deletePlaylist(e, playlist._id, setDsiable)
+                        deletePlaylist(e, playlist._id, setDisable)
                       }
                       disabled={disable}
-                      className="btn-no-decoration"
+                      className="btn-no-decoration error-color"
                     >
                       <FontAwesomeIcon icon="trash" />
                     </button>

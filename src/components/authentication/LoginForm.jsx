@@ -57,7 +57,7 @@ function LoginForm() {
                 required
               />
               <button
-                className="btn-no-decoration cursor-pointer"
+                className="btn-no-decoration cursor-pointer text-white"
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
               >
