@@ -43,7 +43,7 @@ function CommonVideoCard({ video, playlistCategory }) {
         <span>{video.title}</span>
         <button
           onClick={(e) => onClickDeleteHandler(e)}
-          className="btn-no-decoration"
+          className="btn-no-decoration error-color"
           disabled={disable}
         >
           <FontAwesomeIcon

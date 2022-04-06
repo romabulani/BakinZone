@@ -55,8 +55,11 @@
   border: none;
   padding: 0;
   background: none;
-  color: var(--error-color);
   cursor: pointer;
+}
+
+.error-color {
+  color: var(--error-color);
 }
 
 .btn-primary {

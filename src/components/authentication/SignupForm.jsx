@@ -149,7 +149,7 @@ function SignupForm() {
                 required
               />
               <button
-                className="btn-no-decoration cursor-pointer"
+                className="btn-no-decoration cursor-pointer text-white"
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
               >
@@ -197,7 +197,7 @@ function SignupForm() {
                 required
               />
               <button
-                className="btn-no-decoration cursor-pointer"
+                className="btn-no-decoration cursor-pointer text-white"
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                 type="button"
               >

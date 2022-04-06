@@ -55,7 +55,7 @@ function Playlists() {
                         deletePlaylist(e, playlist._id, setDisable)
                       }
                       disabled={disable}
-                      className="btn-no-decoration"
+                      className="btn-no-decoration error-color"
                     >
                       <FontAwesomeIcon icon="trash" />
                     </button>
