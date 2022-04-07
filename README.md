@@ -1,6 +1,6 @@
 
 <div align="center">
-  <img src="/public/logo.webp" height="100" width="100" alt="logo"/>
+  <img src="/public/logo.png" height="100" width="100" alt="logo"/>
   <h1>Bakin Zone</h1>
     <p>Are you also the foodie? Do you love Desserts? <a href="https://bakinzone.netlify.app/">Bakin Zone</a> is for you! Its the Video Library which helps you in baking different desserts like Cakes, Muffins, Donuts, Cookies and Pastries!</p>
  </div>
