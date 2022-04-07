@@ -89,7 +89,7 @@ function Video() {
             </div>
             <div className="video-details">
               <div className="keyword hashtag">{`#${video.category}`}</div>
-              <div className="video-title">{video.title}</div>
+              <div className="video-single-title">{video.title}</div>
               <div className="category-chip chip">
                 Views : {video.viewCount}
               </div>
