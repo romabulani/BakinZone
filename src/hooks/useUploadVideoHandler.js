@@ -1,4 +1,4 @@
-import { useReducer, useState } from "react";
+import { useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useData } from "contexts";
@@ -139,7 +139,13 @@ function useUploadVideoHandler() {
           payload: {
             videos: [
               ...state.videos,
-              { ...uploadData, _id: tempId, viewCount: 0 },
+              {
+                ...uploadData,
+                _id: tempId,
+                viewCount: 0,
+                uploadDate: Date.now(),
+                uploaded: true,
+              },
             ],
           },
         });
@@ -148,7 +154,13 @@ function useUploadVideoHandler() {
           payload: {
             uploadedVideos: [
               ...state.uploadedVideos,
-              { ...uploadData, _id: tempId, viewCount: 0, uploaded: true },
+              {
+                ...uploadData,
+                _id: tempId,
+                viewCount: 0,
+                uploadDate: Date.now(),
+                uploaded: true,
+              },
             ],
           },
         });

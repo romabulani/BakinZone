@@ -18,6 +18,7 @@ const initialState = {
   watchLater: [],
   notes: [],
   uploadedVideos: [],
+  sortBy: "none",
 };
 
 const DataContext = createContext();

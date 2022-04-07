@@ -9,7 +9,6 @@ function Videos() {
   const { state, dispatch, setSearchBarText } = useData();
   const { search } = useLocation();
   const [query, setQuery] = useState("");
-
   const getSearchedVideos = () =>
     state.videos.filter(
       (video) =>
@@ -36,7 +35,11 @@ function Videos() {
       filteredVideos = state.videos.filter(
         (perVideo) => perVideo.category === state.category
       );
-
+    if (state.sortBy === "latest")
+      filteredVideos.sort(
+        (a, b) =>
+          new Date(b.uploadDate).getTime() - new Date(a.uploadDate).getTime()
+      );
     return filteredVideos;
   }
 
@@ -44,7 +47,18 @@ function Videos() {
     <div className="middle-content">
       <Sidebar />
       {!search && (
-        <div>
+        <>
+          <div className="margin-container flex-column-start">
+            <button
+              className="btn btn-link btn-link-primary btn-fit-content no-link-decoration text-white "
+              onClick={() =>
+                state.sortBy === "none" &&
+                dispatch({ type: "SORT_BY", payload: { sortBy: "latest" } })
+              }
+            >
+              Sort By Latest
+            </button>
+          </div>
           <div className="categories">
             {state.categories.map((category) => (
               <span
@@ -67,7 +81,7 @@ function Videos() {
               ))}
             </div>
           </div>
-        </div>
+        </>
       )}
 
       {search && getSearchedVideos().length > 0 && (
