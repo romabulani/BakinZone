@@ -1,8 +1,9 @@
 .footer-container {
   background-color: var(--nav-color);
+  border-top: 1px solid var(--hover-color);
   margin-top: 1rem;
   padding: 1rem;
-  padding-bottom: 2rem;
+  z-index: 6;
 }
 
 .footer-header {
@@ -35,4 +36,10 @@
 
 .keyword {
   font-weight: bolder;
+}
+
+@media only screen and (max-width: 640px) {
+  .footer-container {
+    padding-bottom: 2rem;
+  }
 }

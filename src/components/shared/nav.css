@@ -1,6 +1,7 @@
 .nav-container {
   align-items: center;
   background-color: var(--nav-color);
+  border-bottom: 1px solid var(--hover-color);
   display: flex;
   height: 4rem;
   justify-content: space-between;
