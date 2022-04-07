@@ -107,6 +107,16 @@
   margin-right: 1.5rem;
 }
 
+.btn-link-primary {
+  margin: unset;
+  color: var(--primary-color);
+  font-weight: normal;
+  border-bottom: 1px solid var(--primary-color);
+  padding: unset;
+  border-radius: unset;
+  margin-right: 1.5rem;
+}
+
 .flex-row-justify-space-between {
   display: flex;
   justify-content: space-between;

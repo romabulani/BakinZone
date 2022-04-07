@@ -85,9 +85,14 @@ function PlaylistModal() {
                 id="watchLater"
                 checked={inWatchLater(currentVideo._id)}
                 className="p-right-5"
+                disabled={disableWatchLater}
                 onChange={(e) =>
                   inWatchLater(currentVideo._id)
-                    ? deleteVideoFromWatchLaterVideos(e, currentVideo._id)
+                    ? deleteVideoFromWatchLaterVideos(
+                        e,
+                        currentVideo._id,
+                        setDisableWatchLater
+                      )
                     : addVideoToWatchLaterVideos(
                         e,
                         currentVideo,
