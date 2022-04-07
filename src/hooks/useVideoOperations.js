@@ -166,7 +166,8 @@ function useVideoOperations() {
     }
   };
 
-  const deleteVideoFromWatchLaterVideos = async (e, videoId) => {
+  const deleteVideoFromWatchLaterVideos = async (e, videoId, setDisable) => {
+    setDisable && setDisable(true);
     e.preventDefault();
     try {
       const response = await deleteVideoFromWatchLaterVideosInServer(
@@ -179,6 +180,8 @@ function useVideoOperations() {
       });
     } catch (e) {
       resetFunction();
+    } finally {
+      setDisable && setDisable(false);
     }
   };
 

@@ -20,7 +20,7 @@ function CommonVideoCard({ video, playlistCategory, uploaded }) {
     else if (playlistCategory === "watchHistory")
       deleteVideoFromHistory(e, video._id, setDisable);
     else if (playlistCategory === "watchLater")
-      deleteVideoFromWatchLaterVideos(e, video._id, setDisable);
+      deleteVideoFromWatchLaterVideos(e, video._id);
     else removeVideoFromPlaylist(e, playlistCategory, setDisable, video._id);
   };
 
