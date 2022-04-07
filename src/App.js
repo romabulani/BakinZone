@@ -1,6 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+
 import {
   Footer,
   HeroSection,
@@ -24,14 +25,21 @@ import {
   WatchLater,
 } from "components";
 import "./App.css";
+import { useTheme } from "contexts";
 
 function App() {
+  const { theme } = useTheme();
   return (
-    <div className="App pagewrapper">
+    <div className="App pagewrapper" data-theme={theme}>
       <Navigation />
       <ScrollToTop />
       <PlaylistModal />
-      <ToastContainer theme="dark" position="bottom-right" autoClose={800} />
+      <ToastContainer
+        theme={theme === "dark" ? "dark" : "light"}
+        position="bottom-right"
+        autoClose={800}
+        draggable
+      />
       <Routes>
         <Route path="/" element={<HeroSection />} />
         <Route path="/signup" element={<SignupForm />} />

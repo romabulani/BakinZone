@@ -45,6 +45,11 @@ export const reducer = (state, action) => {
         ...state,
         uploadedVideos: action.payload.uploadedVideos,
       };
+    case "SORT_BY":
+      return {
+        ...state,
+        sortBy: action.payload.sortBy,
+      };
     default:
       return state;
   }

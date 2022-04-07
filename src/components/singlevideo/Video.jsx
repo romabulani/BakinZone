@@ -89,8 +89,10 @@ function Video() {
             </div>
             <div className="video-details">
               <div className="keyword hashtag">{`#${video.category}`}</div>
-              <div className="video-title">View Count : {video.viewCount}</div>
               <div className="video-title">{video.title}</div>
+              <div className="category-chip chip">
+                Views : {video.viewCount}
+              </div>
               <div className="video-buttons">
                 <span
                   className="chip category-chip"
@@ -137,6 +139,7 @@ function Video() {
                   Copy Link
                 </span>
               </div>
+              <hr className="section-line" />
               <div className="hashtag">{video.description}</div>
             </div>
           </div>
