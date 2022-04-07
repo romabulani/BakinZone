@@ -115,7 +115,7 @@
   color: var(--primary-color);
   font-weight: normal;
   border-bottom: 1px solid var(--primary-color);
-  padding: unset;
+  padding: 0 5px;
   border-radius: unset;
   margin-right: 1.5rem;
 }

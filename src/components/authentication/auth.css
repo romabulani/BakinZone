@@ -124,6 +124,10 @@ span {
   background-color: transparent;
 }
 
+.margin-top-5 {
+  margin-top: 5px;
+}
+
 @media only screen and (max-width: 640px) {
   .auth-container,
   .logout-container {

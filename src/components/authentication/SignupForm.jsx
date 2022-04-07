@@ -227,11 +227,11 @@ function SignupForm() {
             SIGN UP
           </button>
 
-          <div className="flex-row-center">
+          <div className="flex-row-center margin-top-5">
             <span>Already have an account?</span>
             <Link
               to="/login"
-              className="btn-link btn-link-primary"
+              className="btn-link btn-link-primary "
               state={location.state}
             >
               Login here

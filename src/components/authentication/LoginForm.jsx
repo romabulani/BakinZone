@@ -96,7 +96,7 @@ function LoginForm() {
               <div> Email or Password is incorrect</div>
             </div>
           )}
-          <div>
+          <div className="flex-row-center">
             <span>Don't have an account?</span>
             <Link
               to="/signup"
