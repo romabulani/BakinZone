@@ -9,7 +9,6 @@ import {
   LikedVideos,
   LoginForm,
   MobileProfile,
-  MockAPI,
   Navigation,
   NotFound,
   PlaylistModal,
@@ -44,7 +43,6 @@ function App() {
         <Route path="/" element={<HeroSection />} />
         <Route path="/signup" element={<SignupForm />} />
         <Route path="/login" element={<LoginForm />} />
-        <Route path="/mock-api" element={<MockAPI />} />
         <Route path="/videos" element={<Videos />} />
         <Route path="/videos/:videoId" element={<Video />} />
         <Route
