@@ -1,14 +1,7 @@
 import { useAuth, useData } from "contexts";
 import { useNavigate } from "react-router-dom";
-
-import {
-  getAllPlaylistsFromServer,
-  postLoginData,
-  getAllVideosInHistoryFromServer,
-  getAllLikedVideosFromServer,
-  getWatchLaterVideosFromServer,
-  getNotesFromServer,
-} from "services";
+import { toast } from "react-toastify";
+import { postLoginData } from "services";
 
 function useLoginHandler() {
   const { setAuthToken, setAuthUser } = useAuth();
@@ -19,58 +12,63 @@ function useLoginHandler() {
     setLoginData,
     setErrorData,
     loginData,
-    location
+    location,
+    setDisableLogin
   ) => {
+    if (setDisableLogin) setDisableLogin(true);
     if (e) e.preventDefault();
     try {
       let response;
       if (e && e.target.innerText === "Login as Guest") {
         setLoginData({
-          email: "adarshbalika@gmail.com",
-          password: "adarshBalika123",
+          email: "johndoe@gmail.com",
+          password: "Johndoe@123",
         });
-        response = await postLoginData(
-          "adarshbalika@gmail.com",
-          "adarshBalika123"
-        );
+        response = await postLoginData("johndoe@gmail.com", "Johndoe@123");
       } else
         response = await postLoginData(loginData.email, loginData.password);
 
-      const user = JSON.stringify(response.foundUser);
-      const tokenResponse = response.encodedToken;
+      const tokenResponse = response.user.token;
+      const foundUser = {
+        firstName: response.user.firstName,
+        lastName: response.user.lastName,
+        email: response.user.email,
+      };
       setAuthToken(tokenResponse);
-      setAuthUser(response.foundUser);
+      setAuthUser(foundUser);
       localStorage.setItem("authToken", tokenResponse);
-      localStorage.setItem("authUser", user);
-      response = await getAllPlaylistsFromServer(tokenResponse);
+      localStorage.setItem("authUser", JSON.stringify(foundUser));
       dispatch({
         type: "SET_PLAYLISTS",
-        payload: { playlists: response.playlists },
+        payload: { playlists: response.user.playlists },
       });
-      response = await getAllVideosInHistoryFromServer(tokenResponse);
       dispatch({
         type: "SET_HISTORY",
-        payload: { history: response.history },
+        payload: { history: response.user.history },
       });
-      response = await getAllLikedVideosFromServer(tokenResponse);
       dispatch({
         type: "SET_LIKED_VIDEOS",
-        payload: { likes: response.likes },
+        payload: { likes: response.user.likes },
       });
-      response = await getWatchLaterVideosFromServer(tokenResponse);
       dispatch({
         type: "SET_WATCH_LATER",
-        payload: { watchLater: response.watchlater },
+        payload: { watchLater: response.user.watchlater },
       });
-      response = await getNotesFromServer(tokenResponse);
       dispatch({
         type: "SET_NOTES",
-        payload: { notes: response.notes },
+        payload: { notes: response.user.notes },
       });
+      dispatch({
+        type: "SET_UPLOADED_VIDEOS",
+        payload: { uploadedVideos: response.user.uploadedVideos },
+      });
+      if (e) toast.success("Log In successful");
       if (location.state) navigate(location.state?.from?.pathname);
       else navigate("/videos");
     } catch (e) {
       setErrorData(true);
+    } finally {
+      if (setDisableLogin) setDisableLogin(false);
     }
   };
   return { loginHandler };

@@ -136,8 +136,9 @@ function useSignupHandler() {
   };
   const { loginHandler } = useLoginHandler();
 
-  const signUpHandler = async (e, location) => {
+  const signUpHandler = async (e, location, setDisableSignup) => {
     e.preventDefault();
+    setDisableSignup(true);
     try {
       if (checkValidation()) {
         const response = await postSignupData(formData);
@@ -149,11 +150,14 @@ function useSignupHandler() {
             email: formData.email,
             password: formData.password,
           },
-          location
+          location,
+          null
         );
       }
     } catch (e) {
       console.error("signUpHandler : Couldn't signup", e);
+    } finally {
+      setDisableSignup(true);
     }
   };
 
