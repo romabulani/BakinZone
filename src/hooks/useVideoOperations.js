@@ -129,6 +129,7 @@ function useVideoOperations() {
       });
     } catch (e) {
       resetFunction();
+    } finally {
       setDisable(false);
     }
   };
@@ -186,10 +187,10 @@ function useVideoOperations() {
   };
 
   const inWatchLater = (videoId) => {
-    const filteredVideos = state.watchLater.filter(
+    const filteredVideos = state?.watchLater?.filter(
       (video) => video._id === videoId
     );
-    return !(filteredVideos.length === 0);
+    return filteredVideos?.length ? true : false;
   };
 
   return {

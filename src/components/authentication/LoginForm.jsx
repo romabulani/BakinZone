@@ -11,7 +11,7 @@ function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const { loginHandler } = useLoginHandler();
   const location = useLocation();
-
+  const [disableLogin, setDisableLogin] = useState(false);
   return (
     <div className="middle-content">
       <Sidebar />
@@ -61,6 +61,7 @@ function LoginForm() {
               <button
                 className="btn-no-decoration cursor-pointer text-white"
                 type="button"
+                disabled={disableLogin}
                 onClick={() => setShowPassword(!showPassword)}
               >
                 <FontAwesomeIcon
@@ -72,16 +73,32 @@ function LoginForm() {
           </div>
           <button
             className="btn btn-primary btn-auth"
+            disabled={disableLogin}
             onClick={(e) =>
-              loginHandler(e, setLoginData, setErrorData, loginData, location)
+              loginHandler(
+                e,
+                setLoginData,
+                setErrorData,
+                loginData,
+                location,
+                setDisableLogin
+              )
             }
           >
             Login
           </button>
           <button
             className="btn btn-outline-primary btn-auth guest-button"
+            disabled={disableLogin}
             onClick={(e) => {
-              loginHandler(e, setLoginData, setErrorData, null, location);
+              loginHandler(
+                e,
+                setLoginData,
+                setErrorData,
+                null,
+                location,
+                setDisableLogin
+              );
             }}
           >
             Login as Guest

@@ -163,7 +163,10 @@ function UploadVideoModal({ uploadModal, setUploadModal }) {
                 <div> {uploadErrorData.description}</div>
               </div>
             )}
-
+            <div className="small-font-size upload-note">
+              Note: Video once uploaded, cannot be deleted, and will be visible
+              to all users of Bakin Zone.
+            </div>
             <button
               type="submit"
               className="btn btn-primary btn-auth"
