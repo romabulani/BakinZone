@@ -11,6 +11,7 @@ function SignupForm() {
   const { formData, formDispatch, errorData, errorDispatch, signUpHandler } =
     useSignupHandler();
   const location = useLocation();
+  const [disableSignup, setDisableSignup] = useState(false);
   return (
     <div className="middle-content">
       <Sidebar />
@@ -222,7 +223,8 @@ function SignupForm() {
           <button
             type="submit"
             className="btn btn-primary btn-auth"
-            onClick={(e) => signUpHandler(e, location)}
+            disabled={disableSignup}
+            onClick={(e) => signUpHandler(e, location, setDisableSignup)}
           >
             SIGN UP
           </button>
