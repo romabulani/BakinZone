@@ -52,17 +52,9 @@ function usePlaylistOperations() {
         playlistId,
         currentVideo
       );
-      const newPlaylists = state.playlists.reduce(
-        (acc, curr) =>
-          curr._id === response.playlist._id
-            ? [...acc, response.playlist]
-            : [...acc, curr],
-        []
-      );
-      // Note : Response has playlist and NOT playlists, wrong in MOCKBEE (for reference)
       dispatch({
         type: "SET_PLAYLISTS",
-        payload: { playlists: newPlaylists },
+        payload: { playlists: response.playlists },
       });
     } catch (e) {
       resetFunction();
@@ -93,16 +85,9 @@ function usePlaylistOperations() {
           playlistId,
           currentVideo._id
         );
-      const newPlaylists = state.playlists.reduce(
-        (acc, curr) =>
-          curr._id === response.playlist._id
-            ? [...acc, response.playlist]
-            : [...acc, curr],
-        []
-      );
       dispatch({
         type: "SET_PLAYLISTS",
-        payload: { playlists: newPlaylists },
+        payload: { playlists: response.playlists },
       });
     } catch (e) {
       resetFunction();
