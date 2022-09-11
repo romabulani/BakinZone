@@ -76,7 +76,7 @@ function Videos() {
           </div>
           <div className="flex-row-center">
             <div className="videos-container">
-              {getFilteredVideos().map((video) => (
+              {getFilteredVideos()?.map((video) => (
                 <VideoCard video={video} key={video._id}></VideoCard>
               ))}
             </div>

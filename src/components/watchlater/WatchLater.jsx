@@ -10,12 +10,12 @@ function WatchLater() {
       <div className="flex-column">
         <div className="flex-column-start">
           <div className="large-font-size">Watch Later</div>
-          <div>{`${state.watchLater.length} video(s)`}</div>
+          <div>{`${state?.watchLater?.length || 0} video(s)`}</div>
         </div>
 
         <div className="flex-row-center">
           <div className="videos-container">
-            {state.watchLater.map((video) => (
+            {state.watchLater?.map((video) => (
               <CommonVideoCard
                 video={video}
                 playlistCategory="watchLater"
@@ -25,7 +25,7 @@ function WatchLater() {
           </div>
         </div>
       </div>
-      {state.watchLater.length === 0 && (
+      {!state?.watchLater?.length && (
         <div className="flex-column-center margin-container no-playlist-container">
           <div>No saved videos.</div>
           <Link

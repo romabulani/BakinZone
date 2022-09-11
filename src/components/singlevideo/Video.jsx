@@ -12,13 +12,14 @@ import "./video.css";
 import { SingleNote } from "./SingleNote";
 import { EditNote } from "./EditNote";
 import { useVideoOperations } from "hooks";
+import { updateViewCount } from "services";
 
 function Video() {
   const params = useParams();
   const { state, setPlaylistModal, setCurrentVideo, dispatch } = useData();
   const [disableLike, setDisableLike] = useState(false);
   const [disableWatchLater, setDisableWatchLater] = useState(false);
-
+  const [videoNotes, setVideoNotes] = useState([]);
   const videoRef = useRef();
 
   const { authToken } = useAuth();
@@ -32,14 +33,16 @@ function Video() {
     deleteVideoFromWatchLaterVideos,
   } = useVideoOperations();
 
-  const video = state.videos.find((video) => video._id === params.videoId);
+  const video = state?.videos.find((video) => video?._id === params.videoId);
 
   useEffect(() => setCurrentVideo(video), [video]);
-
-  const videoNotes = state.notes
-    .filter((note) => note.videoId === video._id)
-    .sort((a, b) => b.playingTime - a.playingTime);
-
+  useEffect(() => {
+    setVideoNotes(
+      state.notes
+        ?.filter((note) => note.videoId === video?._id)
+        ?.sort((a, b) => b.playingTime - a.playingTime) || []
+    );
+  }, [video, state.notes]);
   const likeHandler = (e, video) =>
     authToken
       ? isLiked(video._id)
@@ -59,13 +62,15 @@ function Video() {
     toast.info("Link Copied");
   };
 
-  const increaseViewCount = (video) => {
+  const increaseViewCount = async (video) => {
+    const response = await updateViewCount(video._id);
     const updatedVideoList = state.videos.map((eachVideo) =>
-      eachVideo._id === video._id
-        ? { ...eachVideo, viewCount: eachVideo.viewCount + 1 }
-        : eachVideo
+      eachVideo._id === video._id ? response.video : eachVideo
     );
-    dispatch({ type: "SET_VIDEOS", payload: { videos: updatedVideoList } });
+    dispatch({
+      type: "SET_VIDEOS",
+      payload: { videos: updatedVideoList },
+    });
   };
 
   return (
@@ -76,7 +81,7 @@ function Video() {
           <div className="video-content flex-column">
             <div className="single-video-container">
               <ReactPlayer
-                url={`https://www.youtube.com/watch?v=${video._id}`}
+                url={`https://www.youtube.com/watch?v=${video?._id}`}
                 controls
                 width="100%"
                 height="100%"
@@ -88,10 +93,10 @@ function Video() {
               />
             </div>
             <div className="video-details">
-              <div className="keyword hashtag">{`#${video.category}`}</div>
-              <div className="video-single-title">{video.title}</div>
+              <div className="keyword hashtag">{`#${video?.category}`}</div>
+              <div className="video-single-title">{video?.title}</div>
               <div className="category-chip chip">
-                Views : {video.viewCount}
+                Views : {video?.viewCount}
               </div>
               <div className="video-buttons">
                 <span
@@ -99,7 +104,7 @@ function Video() {
                   style={{ pointerEvents: disableLike ? "none" : "auto" }}
                   onClick={(e) => !disableLike && likeHandler(e, video)}
                 >
-                  {isLiked(video._id) ? (
+                  {isLiked(video?._id) ? (
                     <FontAwesomeIcon
                       icon="thumbs-up"
                       className="p-right-5 keyword"
@@ -115,7 +120,7 @@ function Video() {
                     !disableWatchLater && watchLaterHandler(e, video)
                   }
                 >
-                  {inWatchLater(video._id) ? (
+                  {inWatchLater(video?._id) ? (
                     <FontAwesomeIcon
                       icon="clock"
                       className="p-right-5 keyword"
@@ -140,7 +145,7 @@ function Video() {
                 </span>
               </div>
               <hr className="section-line" />
-              <div className="hashtag">{video.description}</div>
+              <div className="hashtag">{video?.description}</div>
             </div>
           </div>
 
