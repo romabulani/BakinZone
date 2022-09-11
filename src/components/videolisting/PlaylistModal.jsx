@@ -48,7 +48,7 @@ function PlaylistModal() {
     const filteredVideos = playlist?.videos?.filter(
       (playlistVideo) => playlistVideo._id === currentVideo._id
     );
-    return filteredVideos.length === 1;
+    return filteredVideos?.length === 1;
   };
 
   const videoInPlaylistHandler = (e, playlist) =>
