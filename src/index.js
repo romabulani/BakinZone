@@ -5,9 +5,6 @@ import App from "./App";
 import "assets";
 import { AuthProvider, DataProvider, ThemeProvider } from "contexts";
 
-// Call make Server
-makeServer();
-
 ReactDOM.render(
   <React.StrictMode>
     <ThemeProvider>
