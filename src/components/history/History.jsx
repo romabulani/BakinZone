@@ -17,7 +17,7 @@ function History() {
             <div className="large-font-size">History</div>
             <div>{`${state.history.length} video(s)`}</div>
           </div>
-          {state.history.length > 0 && (
+          {state.history?.length > 0 && (
             <button
               className="btn btn-link btn-link-error btn-fit-content no-link-decoration"
               disabled={disable}
