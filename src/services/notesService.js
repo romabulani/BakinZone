@@ -1,10 +1,11 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import { API_URL } from "utilities";
 
 const getNotesFromServer = async (authorization) => {
   try {
-    const response = await axios.get(`/api/user/notes`, {
-      headers: { authorization },
+    const response = await axios.get(`${API_URL}/api/user/notes`, {
+      headers: { authorization: authorization },
     });
     if (response.status === 200) return response.data;
     else throw new Error();
@@ -16,7 +17,7 @@ const getNotesFromServer = async (authorization) => {
 const addNewNoteInServer = async (authorization, note) => {
   try {
     const response = await axios.post(
-      "/api/user/notes",
+      `${API_URL}/api/user/notes`,
       { note },
       {
         headers: { authorization },
@@ -34,7 +35,7 @@ const addNewNoteInServer = async (authorization, note) => {
 
 const deleteNoteFromServer = async (authorization, noteId) => {
   try {
-    const response = await axios.delete(`/api/user/notes/${noteId}`, {
+    const response = await axios.delete(`${API_URL}/api/user/notes/${noteId}`, {
       headers: { authorization },
     });
     if (response.status === 200) {
@@ -50,13 +51,13 @@ const deleteNoteFromServer = async (authorization, noteId) => {
 const updateNoteInServer = async (authorization, note) => {
   try {
     const response = await axios.post(
-      `/api/user/notes/${note._id}`,
+      `${API_URL}/api/user/notes/${note._id}`,
       { note },
       {
         headers: { authorization },
       }
     );
-    if (response.status === 201) {
+    if (response.status === 200) {
       toast.success("Note Updated");
       return response.data;
     } else throw new Error();

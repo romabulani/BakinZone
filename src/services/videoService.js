@@ -1,9 +1,10 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import { API_URL } from "utilities";
 
 const getAllVideosInHistoryFromServer = async (authorization) => {
   try {
-    const response = await axios.get("/api/user/history", {
+    const response = await axios.get(`${API_URL}/api/user/history`, {
       headers: { authorization },
     });
     if (response.status === 200) return response.data;
@@ -19,7 +20,7 @@ const getAllVideosInHistoryFromServer = async (authorization) => {
 const addVideoToHistoryInServer = async (authorization, video) => {
   try {
     const response = await axios.post(
-      "/api/user/history",
+      `${API_URL}/api/user/history`,
       { video },
       {
         headers: { authorization },
@@ -37,9 +38,12 @@ const addVideoToHistoryInServer = async (authorization, video) => {
 
 const deleteVideoFromHistoryInServer = async (authorization, videoId) => {
   try {
-    const response = await axios.delete(`/api/user/history/${videoId}`, {
-      headers: { authorization },
-    });
+    const response = await axios.delete(
+      `${API_URL}/api/user/history/${videoId}`,
+      {
+        headers: { authorization },
+      }
+    );
     if (response.status === 200) {
       toast.success("Video deleted from History");
       return response.data;
@@ -55,7 +59,7 @@ const deleteVideoFromHistoryInServer = async (authorization, videoId) => {
 
 const deleteAllVideosFromHistoryInServer = async (authorization) => {
   try {
-    const response = await axios.delete("/api/user/history/all", {
+    const response = await axios.get(`${API_URL}/api/user/history/all`, {
       headers: { authorization },
     });
     if (response.status === 200) {
@@ -73,7 +77,7 @@ const deleteAllVideosFromHistoryInServer = async (authorization) => {
 
 const getAllLikedVideosFromServer = async (authorization) => {
   try {
-    const response = await axios.get("/api/user/likes", {
+    const response = await axios.get(`${API_URL}/api/user/likes`, {
       headers: { authorization },
     });
     if (response.status === 200) return response.data;
@@ -89,7 +93,7 @@ const getAllLikedVideosFromServer = async (authorization) => {
 const addVideoToLikedVideosInServer = async (authorization, video) => {
   try {
     const response = await axios.post(
-      "/api/user/likes",
+      `${API_URL}/api/user/likes`,
       { video },
       {
         headers: { authorization },
@@ -110,9 +114,12 @@ const addVideoToLikedVideosInServer = async (authorization, video) => {
 
 const deleteVideoFromLikedVideosInServer = async (authorization, videoId) => {
   try {
-    const response = await axios.delete(`/api/user/likes/${videoId}`, {
-      headers: { authorization },
-    });
+    const response = await axios.delete(
+      `${API_URL}/api/user/likes/${videoId}`,
+      {
+        headers: { authorization },
+      }
+    );
     if (response.status === 200) {
       toast.success("Removed from Liked Videos");
       return response.data;
@@ -128,7 +135,7 @@ const deleteVideoFromLikedVideosInServer = async (authorization, videoId) => {
 
 const getWatchLaterVideosFromServer = async (authorization) => {
   try {
-    const response = await axios.get("/api/user/watchlater", {
+    const response = await axios.get(`${API_URL}/api/user/watchlater`, {
       headers: { authorization },
     });
     if (response.status === 200) return response.data;
@@ -144,7 +151,7 @@ const getWatchLaterVideosFromServer = async (authorization) => {
 const addVideoToWatchLaterVideosInServer = async (authorization, video) => {
   try {
     const response = await axios.post(
-      "/api/user/watchlater",
+      `${API_URL}/api/user/watchlater`,
       { video },
       {
         headers: { authorization },
@@ -168,9 +175,12 @@ const deleteVideoFromWatchLaterVideosInServer = async (
   videoId
 ) => {
   try {
-    const response = await axios.delete(`/api/user/watchlater/${videoId}`, {
-      headers: { authorization },
-    });
+    const response = await axios.delete(
+      `${API_URL}/api/user/watchlater/${videoId}`,
+      {
+        headers: { authorization },
+      }
+    );
     if (response.status === 200) {
       toast.success("Removed from Watch Later");
       return response.data;
@@ -181,6 +191,37 @@ const deleteVideoFromWatchLaterVideosInServer = async (
       "deleteVideoFromWatchLaterVideosInServer : Error in deleting video from Watch Later",
       e
     );
+  }
+};
+
+const uploadVideoInServer = async (authorization, uploadVideo) => {
+  try {
+    const response = await axios.post(
+      `${API_URL}/api/user/uploadvideo`,
+      { uploadVideo },
+      {
+        headers: { authorization },
+      }
+    );
+    if (response.status === 201) {
+      toast.success("Video added!");
+      return response.data;
+    } else throw new Error();
+  } catch (e) {
+    toast.error(`Couldn't add Video! Try again.`);
+    console.error("addVideoInServer : Error in adding video", e);
+  }
+};
+
+const getUploadedVideos = async (authorization) => {
+  try {
+    const response = await axios.get(`${API_URL}/api/user/uploadvideo`, {
+      headers: { authorization },
+    });
+    if (response.status === 200) return response.data;
+    else throw new Error();
+  } catch (e) {
+    console.error("getUploadedVideos : Error in fetching uploaded videos.", e);
   }
 };
 
@@ -195,4 +236,6 @@ export {
   getWatchLaterVideosFromServer,
   addVideoToWatchLaterVideosInServer,
   deleteVideoFromWatchLaterVideosInServer,
+  uploadVideoInServer,
+  getUploadedVideos,
 };

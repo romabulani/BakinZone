@@ -1,9 +1,10 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import { API_URL } from "utilities";
 
 const getAllPlaylistsFromServer = async (authorization) => {
   try {
-    const response = await axios.get("/api/user/playlists", {
+    const response = await axios.get(`${API_URL}/api/user/playlists`, {
       headers: { authorization },
     });
     if (response.status === 200) return response.data;
@@ -19,7 +20,7 @@ const getAllPlaylistsFromServer = async (authorization) => {
 const addPlaylistToServer = async (authorization, playlist) => {
   try {
     const response = await axios.post(
-      "/api/user/playlists",
+      `${API_URL}/api/user/playlists`,
       { playlist },
       {
         headers: { authorization },
@@ -38,7 +39,7 @@ const addPlaylistToServer = async (authorization, playlist) => {
 const addVideoToPlaylistInServer = async (authorization, playlistId, video) => {
   try {
     const response = await axios.post(
-      `/api/user/playlists/${playlistId}`,
+      `${API_URL}/api/user/playlists/${playlistId}`,
       { video },
       {
         headers: { authorization },
@@ -64,7 +65,7 @@ const removeVideoFromPlaylistInServer = async (
 ) => {
   try {
     const response = await axios.delete(
-      `/api/user/playlists/${playlistId}/${videoId}`,
+      `${API_URL}/api/user/playlists/${playlistId}/${videoId}`,
       {
         headers: { authorization },
       }
@@ -84,9 +85,12 @@ const removeVideoFromPlaylistInServer = async (
 
 const deletePlaylistInServer = async (authorization, playlistId) => {
   try {
-    const response = await axios.delete(`/api/user/playlists/${playlistId}`, {
-      headers: { authorization },
-    });
+    const response = await axios.delete(
+      `${API_URL}/api/user/playlists/${playlistId}`,
+      {
+        headers: { authorization },
+      }
+    );
     if (response.status === 200) {
       toast.success("Playlist deleted successfully");
       return response.data;

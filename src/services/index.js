@@ -1,4 +1,4 @@
-export { getVideos, getCategories } from "./dataService";
+export { getVideos, getCategories, updateViewCount } from "./dataService";
 export { postLoginData, postSignupData } from "./authService";
 export {
   getAllPlaylistsFromServer,
@@ -18,6 +18,8 @@ export {
   getWatchLaterVideosFromServer,
   addVideoToWatchLaterVideosInServer,
   deleteVideoFromWatchLaterVideosInServer,
+  uploadVideoInServer,
+  getUploadedVideos,
 } from "./videoService";
 export {
   addNewNoteInServer,
