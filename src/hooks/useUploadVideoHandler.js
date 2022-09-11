@@ -1,11 +1,13 @@
 import { useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useData } from "contexts";
+import { useAuth, useData } from "contexts";
+import { getVideos, uploadVideoInServer } from "services";
 
 function useUploadVideoHandler() {
   const { state, dispatch } = useData();
   const navigate = useNavigate();
+  const { authToken } = useAuth();
   function youtube_parser(url) {
     const regExp =
       /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
@@ -123,7 +125,7 @@ function useUploadVideoHandler() {
     return { tempId, uploadFlag };
   };
 
-  const uploadVideoHandler = (e, setUploadModal) => {
+  const uploadVideoHandler = async (e, setUploadModal) => {
     e.preventDefault();
     const { tempId, uploadFlag } = checkValidation();
     if (uploadFlag) {
@@ -134,38 +136,27 @@ function useUploadVideoHandler() {
         toast.info("Video already exists!");
         navigate(`/videos/${tempId}`);
       } else {
-        dispatch({
-          type: "SET_VIDEOS",
-          payload: {
-            videos: [
-              ...state.videos,
-              {
-                ...uploadData,
-                _id: tempId,
-                viewCount: 0,
-                uploadDate: Date.now(),
-                uploaded: true,
-              },
-            ],
-          },
+        let response = await uploadVideoInServer(authToken, {
+          ...uploadData,
+          _id: tempId,
+          viewCount: 0,
+          uploadDate: Date.now(),
+          uploaded: true,
         });
         dispatch({
           type: "SET_UPLOADED_VIDEOS",
           payload: {
-            uploadedVideos: [
-              ...state.uploadedVideos,
-              {
-                ...uploadData,
-                _id: tempId,
-                viewCount: 0,
-                uploadDate: Date.now(),
-                uploaded: true,
-              },
-            ],
+            uploadedVideos: response.uploadedVideos,
+          },
+        });
+        response = await getVideos();
+        dispatch({
+          type: "SET_VIDEOS",
+          payload: {
+            videos: response.videos,
           },
         });
         setUploadModal(false);
-        toast.success("Video uploaded!");
       }
     }
   };
