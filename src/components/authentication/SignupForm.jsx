@@ -56,7 +56,7 @@ function SignupForm() {
           )}
           <div className="form-input">
             {" "}
-            <label htmlFor="firstName" className="input-label">
+            <label htmlFor="lastName" className="input-label">
               Last Name *
             </label>
             <input
