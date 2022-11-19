@@ -15,6 +15,41 @@ export const reducer = (state, action) => {
         ...state,
         category: action.payload.category,
       };
+    case "SET_PLAYLISTS":
+      return {
+        ...state,
+        playlists: action.payload.playlists,
+      };
+    case "SET_HISTORY":
+      return {
+        ...state,
+        history: action.payload.history,
+      };
+    case "SET_LIKED_VIDEOS":
+      return {
+        ...state,
+        likes: action.payload.likes,
+      };
+    case "SET_WATCH_LATER":
+      return {
+        ...state,
+        watchLater: action.payload.watchLater,
+      };
+    case "SET_NOTES":
+      return {
+        ...state,
+        notes: action.payload.notes,
+      };
+    case "SET_UPLOADED_VIDEOS":
+      return {
+        ...state,
+        uploadedVideos: action.payload.uploadedVideos,
+      };
+    case "SORT_BY":
+      return {
+        ...state,
+        sortBy: action.payload.sortBy,
+      };
     default:
       return state;
   }

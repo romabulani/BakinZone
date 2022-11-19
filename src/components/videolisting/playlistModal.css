@@ -1,0 +1,100 @@
+.playlist-modal {
+  background-color: var(--nav-color);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  left: 50%;
+  max-height: 20rem;
+  min-width: 10rem;
+  padding: 1rem;
+  position: fixed;
+  row-gap: 10px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 20rem;
+  z-index: 3;
+}
+
+.playlists-container {
+  max-height: 14rem;
+  overflow-y: scroll;
+}
+
+.flex-row-spacebetween {
+  display: flex;
+  justify-content: space-between;
+}
+
+.playlist {
+  align-items: baseline;
+  cursor: pointer;
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.create-playlist {
+  padding-top: 10px;
+}
+
+.modal-wrapper {
+  background: rgba(18, 18, 18, 0.7);
+  height: 100vh;
+  position: fixed;
+  width: 100vw;
+  z-index: 10;
+  top: 0;
+  left: 0;
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+
+.close-btn {
+  cursor: pointer;
+}
+
+.checkbox-label {
+  padding-left: 10px;
+}
+
+.new-playlist-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+.btn-dark-theme {
+  color: var(--bg-color);
+  font-weight: bold;
+  margin: unset;
+  width: 100%;
+}
+
+.input-full-width {
+  width: 100%;
+}
+
+.disabled-cursor {
+  cursor: not-allowed;
+}
+
+.playlist-header {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.watch-later {
+  padding-bottom: 10px;
+  margin-top: 10px;
+}
+
+input[type="checkbox"],
+.checkbox-label {
+  cursor: pointer;
+}

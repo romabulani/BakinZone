@@ -1,2 +1,14 @@
 @import "./styles/reset.css";
 @import "./styles/colors.css";
+@import "./styles/globalbakin.css";
+
+.App {
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  transition: all 0.5s;
+}
+button {
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  transition: all 0.5s;
+}

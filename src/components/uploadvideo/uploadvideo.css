@@ -1,0 +1,46 @@
+.upload-modal {
+  max-height: unset;
+  height: fit-content;
+  width: 25rem;
+}
+
+.form-select {
+  background: var(--bg-color);
+}
+
+.small-font-size {
+  font-size: 14px;
+}
+
+.input-upload-label {
+  width: 40%;
+}
+
+.input-upload {
+  width: 50%;
+}
+
+.upload-error {
+  margin-left: 45%;
+  padding-bottom: 5px;
+}
+
+.position-relative {
+  position: relative;
+}
+
+.upload-close-btn {
+  position: absolute;
+  right: 10px;
+  top: 4px;
+}
+
+.upload-note {
+  margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 460px) {
+  .upload-modal {
+    width: 90vw;
+  }
+}

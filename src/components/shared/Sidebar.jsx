@@ -1,11 +1,9 @@
-import "./nav.css";
 import { NavLink, Link } from "react-router-dom";
+import { RiPlayListAddFill } from "react-icons/ri";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useAuth } from "contexts";
+import "./nav.css";
 
 function Sidebar() {
-  const { authToken } = useAuth();
-
   return (
     <>
       <aside className="sidebar">
@@ -21,6 +19,7 @@ function Sidebar() {
 
         <NavLink
           to="/videos"
+          end={true}
           className={({ isActive }) =>
             isActive ? "sidebar-item sidebar-active" : "sidebar-item"
           }
@@ -30,17 +29,19 @@ function Sidebar() {
         </NavLink>
 
         <NavLink
-          to="/"
+          to="/playlists"
           className={({ isActive }) =>
             isActive ? "sidebar-item sidebar-active" : "sidebar-item"
           }
         >
-          <FontAwesomeIcon icon="clapperboard" className="sidebar-icon" />
-          <span>Playlists</span>
+          <div className="icon-chip">
+            <RiPlayListAddFill />
+            <span className="p-left-12">Playlists</span>
+          </div>
         </NavLink>
 
         <NavLink
-          to="/"
+          to="/liked"
           className={({ isActive }) =>
             isActive ? "sidebar-item sidebar-active" : "sidebar-item"
           }
@@ -50,7 +51,7 @@ function Sidebar() {
         </NavLink>
 
         <NavLink
-          to="/"
+          to="/history"
           className={({ isActive }) =>
             isActive ? "sidebar-item sidebar-active" : "sidebar-item"
           }
@@ -60,7 +61,7 @@ function Sidebar() {
         </NavLink>
 
         <NavLink
-          to="/"
+          to="/watchlater"
           className={({ isActive }) =>
             isActive ? "sidebar-item sidebar-active" : "sidebar-item"
           }
@@ -68,32 +69,41 @@ function Sidebar() {
           <FontAwesomeIcon icon="clock" className="sidebar-icon" />
           <span>Watch Later</span>
         </NavLink>
+
+        <NavLink
+          to="/uploadvideo"
+          className={({ isActive }) =>
+            isActive ? "sidebar-item sidebar-active" : "sidebar-item"
+          }
+        >
+          <FontAwesomeIcon icon="upload" className="sidebar-icon" />
+          <span>Upload Video</span>
+        </NavLink>
       </aside>
       <div className="mobile-bottom-nav">
-        <Link to="/videos" className="mobile-nav-item">
-          <div className="mobile-nav-item">
-            <FontAwesomeIcon icon="home" className="bottom-icon" />
-            <span>Home</span>
-          </div>
-        </Link>
-
         <Link to="/videos" className="mobile-nav-item">
           <div className="mobile-nav-item">
             <FontAwesomeIcon icon="compass" className="bottom-icon" />
             <span>Explore</span>
           </div>
         </Link>
-
-        <Link to="/videos" className="mobile-nav-item">
+        <Link to="/playlists" className="mobile-nav-item">
           <div className="mobile-nav-item">
-            <FontAwesomeIcon icon="clapperboard" className="bottom-icon" />
+            <div className="icon-chip">
+              <RiPlayListAddFill />
+            </div>
             <span>Playlists</span>
           </div>
         </Link>
-        <Link
-          to={authToken ? "/profile" : "/login"}
-          className="mobile-nav-item"
-        >
+        <Link to="/uploadvideo" className="mobile-nav-item">
+          <div className="mobile-nav-item">
+            <div className="mobile-nav-item">
+              <FontAwesomeIcon icon="upload" className="bottom-icon" />
+              <span>Upload Video</span>
+            </div>
+          </div>
+        </Link>
+        <Link to="/profile" className="mobile-nav-item">
           <div className="mobile-nav-item">
             <FontAwesomeIcon icon="user" className="bottom-icon" />
             <span>Profile</span>
